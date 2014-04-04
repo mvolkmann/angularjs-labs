@@ -1,0 +1,72 @@
+<h3>"{{book.displayName}}" Book</h3>
+
+<div ng-hide="book.fields">
+  This book has no defined fields!<br>
+  Click
+  <span class="glyphicon glyphicon-wrench" ng-click="editBook(book.id)"></span>
+  next to the button for this book to add them.
+</div>
+
+<!-- This controls the form visibility toggle. -->
+<div ng-show="book.fields">
+  <div ng-show="editing" ng-click="editing = false">
+    &#x25bc; Collapse to hide add/edit area.
+  </div>
+  <div ng-hide="editing" ng-click="editing = true">
+    &#x25b6; Expand to add/edit items.
+  </div>
+</div>
+
+<form name="viewBook" class="form-horizontal" novalidate
+  ng-show="editing && book.fields">
+  <div class="form-group" ng-repeat="field in book.fields">
+    <label class="col-sm-2 control-label">
+      {{field.displayName}}
+    </label>
+    <div class="col-sm-4" ng-switch on="inputType(field)">
+      <div ng-switch-when="color" cb-color-picker
+        color="item[field.propertyName]"></div>
+      <input ng-switch-default type="{{inputType(field)}}"
+        placeholder="{{field.placeholder}}"
+        ng-class="inputClass(field)"
+        ng-model="item[field.propertyName]"
+        ng-required="field.required">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <button class="btn btn-default" ng-click="addItem()"
+        ng-disabled="viewBook.$invalid">
+        {{editing ? 'Update' : 'Add'}}
+      </button>
+      Changes are not persisted<br>until this button is pressed!
+    </div>
+  </div>
+  <hr>
+</form>
+
+<table ng-show="book.fields">
+  <tr>
+    <th ng-repeat="field in book.fields">
+      <a ng-click="sortOn(field)">{{field.displayName}}</a>
+      <span ng-show="field === sortField && !reverse">&#x25b2;</span>
+      <span ng-show="field === sortField && reverse">&#x25bc;</span>
+    </th>
+    <th>Delete</th>
+  </tr>
+  <tr>
+    <th class="filter" ng-repeat="field in book.fields">
+      <input type="text" ng-model="filter[field.propertyName]" placeholder="filter">
+    </th>
+    <th></th>
+  </tr>
+  <tr ng-repeat="(index, item) in items | objToArr | filter:filter | orderBy:sortKey:reverse"
+    ng-click="editItem(item)">
+    <td ng-repeat="field in book.fields" ng-class="getFieldClass(field)">
+      {{item[field.propertyName]}}
+    </td>
+    <td class="delete-btn">
+      <span class="glyphicon glyphicon-remove" ng-click="deleteItem(item)"</span>
+    </td>
+  </tr>
+</table>

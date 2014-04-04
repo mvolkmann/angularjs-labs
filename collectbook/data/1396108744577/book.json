@@ -1,0 +1,29 @@
+{
+  "id": 1396108744577,
+  "fields": [
+    {
+      "displayName": "Color",
+      "type": "color",
+      "propertyName": "color",
+      "required": true
+    },
+    {
+      "displayName": "Type",
+      "type": "text",
+      "propertyName": "type",
+      "required": true
+    },
+    {
+      "displayName": "Power",
+      "type": "integer",
+      "propertyName": "power"
+    },
+    {
+      "displayName": "Toughness",
+      "type": "integer",
+      "propertyName": "toughness"
+    }
+  ],
+  "displayName": "Magic",
+  "propertyName": "magic"
+}

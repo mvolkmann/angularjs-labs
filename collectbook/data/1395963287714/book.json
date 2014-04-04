@@ -1,0 +1,35 @@
+{
+  "id": 1395963287714,
+  "fields": [
+    {
+      "displayName": "First Name",
+      "type": "text",
+      "propertyName": "firstName",
+      "required": true
+    },
+    {
+      "displayName": "Last Name",
+      "type": "text",
+      "propertyName": "lastName",
+      "required": true
+    },
+    {
+      "displayName": "Relationship",
+      "type": "text",
+      "propertyName": "relationship"
+    },
+    {
+      "displayName": "Favorite Color",
+      "type": "color",
+      "propertyName": "favoriteColor"
+    },
+    {
+      "displayName": "Email Address",
+      "type": "email",
+      "placeholder": "name@domain.tld",
+      "propertyName": "emailAddress"
+    }
+  ],
+  "displayName": "Family",
+  "propertyName": "family"
+}

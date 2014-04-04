@@ -1,0 +1,19 @@
+<nav>
+  <div class="nav-bg"></div>
+  <div class="book-row" ng-repeat="book in books | orderBy:'displayName'">
+    <button class="btn btn-default" ng-click="viewBook(book.id)">
+      {{book.displayName}}
+    </button>
+    <div class="icons">
+      <div class="glyphicon glyphicon-wrench"
+        ng-click="editBook(book.id)"></div>
+      <div class="glyphicon glyphicon-remove"
+        ng-click="deleteBook(book.id, book.displayName)"></div>
+    </div>
+  </div>
+  <div id="add-btn">
+    <a ui-sref="newBook">
+      <span class="glyphicon glyphicon-plus"></span>
+    </a>
+  </div>
+</nav>

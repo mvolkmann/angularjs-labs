@@ -1,0 +1,19 @@
+{
+  "id": 1395962753204,
+  "fields": [
+    {
+      "displayName": "Team Name",
+      "type": "text",
+      "propertyName": "teamName",
+      "required": true
+    },
+    {
+      "displayName": "City",
+      "type": "text",
+      "propertyName": "city",
+      "required": true
+    }
+  ],
+  "displayName": "Hockey",
+  "propertyName": "hockey"
+}

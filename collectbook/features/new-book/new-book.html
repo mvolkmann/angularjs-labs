@@ -1,0 +1,14 @@
+<h3>New Book</h3>
+
+<form name="newBook" class="form-horizontal" novalidate>
+  <div class="form-group">
+    <div class="col-sm-4">
+      <input id="name" type="text" class="form-control"
+        placeholder="name" autofocus
+        ng-model="book.displayName">
+    </div>
+    <div class="col-sm-1">
+      <button class="btn btn-default" ng-click="addBook()">Add</button>
+    </div>
+  </div>
+</form>

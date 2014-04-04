@@ -1,0 +1,15 @@
+<button class="btn btn-default" ng-click="show()"
+  style="background-color: {{color}}; color: {{fontColor}}">
+  Color...
+</button>
+
+<cb-dialog id="cbColorPickerDialog" title="Color Picker">
+  Select a color from the grid below.
+  <table>
+    <tr ng-repeat="row in colors">
+      <td ng-repeat="color in row"
+        style="background-color: {{color}}" ng-click="pick(color)">
+      </td>
+    </tr>
+  </table>
+</cb-dialog>

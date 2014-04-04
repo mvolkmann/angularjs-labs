@@ -1,0 +1,134 @@
+@error-color: #a94442;
+@form-element-spacing: 6px;
+@header-height: 100px;
+@nav-width: 150px;
+
+body {
+  font-family: sans-serif;
+  font-size: 9pt;
+}
+
+input.ng-invalid {
+  border: solid @error-color 1px;
+}
+
+nav {
+  background-color: DarkSalmon;
+  border-right: solid gray 5px;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: @header-height;
+  width: @nav-width;
+  z-index: -1;
+
+  display: inline-block;
+  padding: 0 10px 10px 10px;
+  width: @nav-width;
+
+  a, button {
+    margin: 10px 0 0 0;
+  }
+
+  #add-btn {
+    margin-top: 10px;
+  }
+
+  .icons {
+    display: inline-block;
+    vertical-align: -13px;
+    .glyphicon {
+      display: block;
+    }
+  }
+}
+
+table {
+  border-collapse: collapse;
+
+  caption {
+    font-size: 14pt;
+    font-weight: bold;
+  }
+  td, th {
+    border: solid LightGray 2px;
+    padding: 10px;
+  }
+  th {
+    background-color: DarkSalmon;
+  }
+}
+
+#add-btn {
+  a { color: black; }
+}
+
+#cbColorPickerDialog .modal-dialog {
+  width: 160px;
+}
+
+#content {
+  bottom: 0;
+  left: @nav-width;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  top: @header-height;
+  overflow: scroll;
+}
+
+#footer {
+  border-top: solid black 3px;
+  height: 40px;
+  padding: 10px;
+}
+
+#header {
+  background-color: LightGray;
+  border-bottom: solid gray 5px;
+  font-size: 36pt;
+  height: @header-height;
+  line-height: @header-height;
+  text-align: center;
+}
+
+#nav {
+  border-right: solid gray 5px;
+  width: @nav-width;
+
+  button {
+    max-width: @nav-width - 40px;
+    white-space: normal;
+  }
+}
+
+.delete-btn {
+  text-align: center;
+}
+
+.error-box {
+  background-color: pink;
+  border: solid @error-color 1px;
+  border-radius: 4px;
+  margin-bottom: @form-element-spacing;
+  margin-left: 10px;
+  padding: 5px;
+}
+
+.filter {
+  font-style: italic;
+  font-weight: normal;
+  padding: 4px;
+}
+
+.form-group {
+  margin-bottom: @form-element-spacing;
+  //input[type="checkbox"] {
+  .checkbox {
+    margin-top: 3px;
+  }
+}
+
+.right {
+  text-align: right;
+}
