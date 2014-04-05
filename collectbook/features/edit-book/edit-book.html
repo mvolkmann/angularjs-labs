@@ -1,73 +1,87 @@
 <h3>Edit "{{book.displayName}}" Book</h3>
 <hr>
 
-<form name="editBook" class="form-horizontal col-sm-6" novalidate>
-  <!--button ng-click="dump()">Dump</button-->
+<!-- Left side -->
+<form name="editBook" class="form-horizontal col-sm-5" novalidate>
+
   <div class="form-group">
-    <label for="name" class="col-sm-4 control-label">
+    <label for="name" class="col-sm-3 control-label">
       Field Name
     </label>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <input id="name" name="name" type="text" class="form-control"
         placeholder="field name" ng-model="field.displayName"
         ng-pattern="/^(?!id$)/" cb-identifier required>
       <!-- The regex above matches any value that is not "id". -->
     </div>
   </div>
-  <div class="col-sm-offset-4" ng-show="field.displayName === 'id'">
+  <!-- TODO: This error box never displays because ng-pattern
+       clears the value of the ng-model when an invalid value is entered.
+       This seems bad! -->
+  <div class="col-sm-offset-3" ng-show="field.displayName === 'id'">
     <div class="error-box">"id" is a reserved field name.</div>
   </div>
+
   <div class="form-group">
-    <label for="type" class="col-sm-4 control-label">
+    <label for="type" class="col-sm-3 control-label">
       Field Type
     </label>
-    <div class="col-sm-8">
+    <div class="col-sm-4">
       <select id="type" class="form-control" ng-model="field.type">
         <option>boolean</option>
         <option>date</option>
         <option>color</option>
         <option>email</option>
-        <option>float</option>
-        <option>image</option>
+        <option>float</option> <!-- TODO: not supported yet -->
+        <option>image</option> <!-- TODO: not supported yet -->
         <option>integer</option>
-        <option>price</option>
+        <option>price</option> <!-- TODO: not supported yet -->
         <option>text</option>
-        <option>time</option>
+        <option>time</option> <!-- TODO: not supported yet -->
         <option>url</option>
-        <option>video</option>
+        <option>video</option> <!-- TODO: not supported yet -->
       </select>
     </div>
   </div>
+
+  <!-- This is display in empty inputs to give the user a hint
+       about the kind of value they should enter. -->
   <div class="form-group">
-    <label for="placeholder" class="col-sm-4 control-label">
+    <label for="placeholder" class="col-sm-3 control-label">
       Placeholder
     </label>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <input id="placeholder" type="text" class="form-control"
         ng-model="field.placeholder">
     </div>
   </div>
+
   <div class="form-group">
-    <label for="required" class="col-sm-4 control-label">
+    <label for="required" class="col-sm-3 control-label">
       Required?
     </label>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <input id="required" class="checkbox" type="checkbox"
         ng-model="field.required">
     </div>
   </div>
+
   <div class="form-group">
-    <div id="add-btn" class="col-sm-offset-4 col-sm-4">
+    <div id="add-btn" class="col-sm-offset-3 col-sm-4">
       <button class="btn btn-default"
         ng-click="addField()" ng-disabled="editBook.$invalid">
         Add
       </button>
     </div>
   </div>
+
 </form>
 
-<table class="col-sm-6">
+<!-- Right side -->
+<!-- TODO: Consider allowing user to change the order of the fields. -->
+<table class="col-sm-7">
   <caption>Fields</caption>
+  <!-- TODO: Size the columns appropriately. -->
   <tr>
     <th>Name</th>
     <th>Type</th>

@@ -5,9 +5,11 @@
   Click
   <span class="glyphicon glyphicon-wrench" ng-click="editBook(book.id)"></span>
   next to the button for this book to add them.
+  <!-- Can also click the wrench icon here. -->
 </div>
 
-<!-- This controls the form visibility toggle. -->
+<!-- This toggles form visibility by
+     setting the editing property on the scope. -->
 <div ng-show="book.fields">
   <div ng-show="editing" ng-click="editing = false">
     &#x25bc; Collapse to hide add/edit area.
@@ -17,6 +19,7 @@
   </div>
 </div>
 
+<!-- This is only visible when adding or editing an item. -->
 <form id="viewBook" name="viewBook" class="form-horizontal" novalidate
   ng-show="editing && book.fields">
   <div class="form-group" ng-repeat="field in book.fields">
@@ -24,8 +27,14 @@
       {{field.displayName}}
     </label>
     <div class="col-sm-4" ng-switch on="inputType(field)">
+      <!-- If the input type is "color",
+           use the custom color picker directive. -->
       <div ng-switch-when="color" cb-color-picker
         color="item[field.propertyName]"></div>
+
+      <!-- For all other input types, use an HTML5 input element. -->
+      <!-- TODO: Would like to add the cb-digits-only directive when
+           the type is "integer", but there isn't a good way to do it. -->
       <input ng-switch-default type="{{inputType(field)}}"
         placeholder="{{field.placeholder}}"
         ng-class="inputClass(field)"
@@ -36,10 +45,12 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-6">
-      <button class="btn btn-default" ng-click="addItem()"
+      <button class="btn btn-default" ng-click="addOrUpdateItem()"
         ng-disabled="viewBook.$invalid">
         {{editing ? 'Update' : 'Add'}}
       </button>
+      <!-- TODO: Warn user if they attempt to navigate away
+           without saving changes. -->
       <span class="error-box">
         Changes are not persisted until this button is pressed!
       </span>
@@ -49,6 +60,8 @@
 </form>
 
 <table ng-show="book.fields">
+  <!-- This row displays field names and
+       supports sorting rows on any single field. -->
   <tr>
     <th ng-repeat="field in book.fields">
       <a ng-click="sortOn(field)">{{field.displayName}}</a>
@@ -57,12 +70,21 @@
     </th>
     <th>Delete</th>
   </tr>
+
+  <!-- This row provides case-insensitive filtering for every field. -->
   <tr>
     <th class="filter" ng-repeat="field in book.fields">
       <input type="text" ng-model="filter[field.propertyName]" placeholder="filter">
     </th>
     <th></th>
   </tr>
+
+  <!-- There will be one of these rows for each item in the book.
+       These rows are filtered and sorted according the what
+       the user requested in the above two rows.
+       If the user clicks anywhere in one of these rows,
+       the corresponding item is displayed
+       in the form at the top for editing. -->
   <tr ng-repeat="(index, item) in items | objToArr | filter:filter | orderBy:sortKey:reverse"
     ng-click="editItem(item)">
     <td ng-repeat="field in book.fields" ng-class="getFieldClass(field)">

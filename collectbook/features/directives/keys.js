@@ -32,7 +32,8 @@ function isIdentifier(event) {
 }
 
 /**
- * Restricts keys that can be pressed when an input has focus.
+ * Restricts keys that can be pressed when an input has focus
+ * to digit and navigation keys.
  * Example usage: <input type="number" cb-digits-only>
  */
 mod.directive('cbDigitsOnly', () => ({
@@ -48,7 +49,9 @@ mod.directive('cbDigitsOnly', () => ({
 }));
 
 /**
- * Restricts keys that can be pressed when an input has focus.
+ * Restricts keys that can be pressed when an input has focus
+ * to characters that are allowed in JavaScript identifiers,
+ * spaces, underscores, and navigation keys.
  * Example usage: <input type="text" cb-identifier>
  */
 mod.directive('cbIdentifier', () => ({

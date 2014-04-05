@@ -5,8 +5,8 @@
 var mod = angular.module('cb-filters');
 
 /**
- * Prevents escaping of HTML.
- * Used in index-in.html to display HTML
+ * This prevents escaping of HTML.
+ * It is used in index-in.html to display HTML
  * from server-side errors in an error dialog.
  */
 mod.filter('raw', ['$sce', function ($sce) {

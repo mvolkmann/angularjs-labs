@@ -8,7 +8,7 @@
         {
           "startRe": "<html ng-app=",
           "length": 1,
-          "content": "// TODO: Add ng-app directive to the html tag.\n<html>"
+          "content": "// Lab 1: Add ng-app directive to the html tag.\n<html>"
         }
       ]
     }

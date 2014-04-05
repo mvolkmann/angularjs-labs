@@ -51,7 +51,7 @@ export function readDir(path) {
     fs.readdir(path, (err, filenames) => {
       if (err) {
         if (err.code === 'ENOENT') {
-          resolve([]);
+          resolve([]); // directory not found, so no contents
         } else {
           reject(err);
         }

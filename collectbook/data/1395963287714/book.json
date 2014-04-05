@@ -28,6 +28,12 @@
       "type": "email",
       "placeholder": "name@domain.tld",
       "propertyName": "emailAddress"
+    },
+    {
+      "displayName": "Middle Name",
+      "type": "text",
+      "placeholder": "",
+      "propertyName": "middleName"
     }
   ],
   "displayName": "Family",

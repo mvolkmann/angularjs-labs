@@ -10,6 +10,8 @@ var mod = angular.module('cb-filters');
  * This is a custom filter that takes an object
  * and returns an array of its property values.
  * Use it before orderBy to sort object property values.
+ * For example,
+ * <tr ng-repeat="animal in zoo | objToArr | orderBy:'name'">
  */
 mod.filter('objToArr', () => {
   return obj => angular.isObject(obj) ?
