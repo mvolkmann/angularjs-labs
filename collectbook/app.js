@@ -34,29 +34,21 @@ function getItemUrl(bookId, itemId) {
   return URL_PREFIX + 'book/' + bookId + '/item/' + itemId;
 }
 
-/*
 app.factory('$exceptionHandler', $injector => (exception, cause) => {
   var cbDialogSvc = $injector.get('cbDialogSvc');
   cbDialogSvc.showError('JavaScript Error', exception.message);
   throw exception;
 });
-*/
 
 app.factory('cbHandleErr', cbDialogSvc =>
-  //(title, message) => cbDialogSvc.showError(title, message)
-  (title, message) => {
-    console.log('cbHandleErr: title =', title);
-    console.log('cbHandleErr: message =', message);
-    //cbDialogSvc.showError(title, message);
-  }
+  err => cbDialogSvc.showError('Server Error', err.data)
 );
 
 app.factory('collectBookSvc', $http => {
   var svc = {};
 
-  svc.addItem = (bookId, item) => {
-    return $http.post(getBookUrl(bookId) + '/item', item);
-  };
+  svc.addItem = (bookId, item) =>
+    $http.post(getBookUrl(bookId) + '/item', item);
 
   svc.addBook = book => $http.post(URL_PREFIX + 'book', book);
 

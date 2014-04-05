@@ -133,13 +133,8 @@ app['delete']('/collectbook/book/:bookId/item/:itemId', (req, res) => {
 // objects with id and name properties.
 app.get('/collectbook/book', (req, res) => {
   getBooks().then(
-    //books => res.send(books, 200),
-    books => res.send(books, 500), // TODO: Testing server errors
-    err => {
-      console.error('Error:', err);
-      res.send(err, 500);
-    }
-  );
+    books => res.send(books, 200),
+    err => res.send(err, 500));
 });
 
 // Retrieves a specific Book object.
