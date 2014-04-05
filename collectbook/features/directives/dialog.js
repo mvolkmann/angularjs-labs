@@ -4,6 +4,7 @@
 
 var mod = angular.module('cb-directives');
 
+// This service provides methods for operating on dialogs.
 mod.factory('cbDialogSvc', ($rootScope) => {
   var svc = {};
 

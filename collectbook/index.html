@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html ng-app="CollectBook">
   <head>
+    <!-- Get Twitter Bootstrap CSS from a CDN. -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- This is app-specific CSS. -->
     <link rel="stylesheet" href="build/styles/collectbook.css">
+
+    <!-- Include third-party JavaScript libraries, using CDNs where possible. -->
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.js"></script>
-    <script src="lib/angular-ui-router.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
     <script src="lib/tinycolor-min.js"></script>
+
+    <!-- Support grunt-contrib-watch reload. -->
     <script src="http://localhost:35729/livereload.js"></script>
+
+    <!-- This is the main JavaScript file.
+         Other JavaScript files in this app are obtained through ES6 imports. -->
     <script src="build/app.js"></script>
   </head>
+  <!-- MainCtrl is defined in app.js. -->
   <body ng-controller="MainCtrl">
     <div id="header">
       CollectBook
+      <!-- Glyphicons are provided by Twitter Bootstrap. -->
       <span class="glyphicon glyphicon-book"></span>
     </div>
     <div id="center">
+      <!-- This uses ui-router sibling views. -->
       <div id="nav" ui-view="nav"></div>
       <div id="content" ui-view="content"></div>
     </div>
   </body>
-  <div cb-dialog id="cbDialog"></div>
+
+  <!-- This is used by cbDialogSvc methods in dialog.js
+       to display error dialogs. -->
   <div id="global-error" cb-dialog title="{{title}}">
+    <!-- The "raw" filter uses ngSanitize to render messages
+         containing HTML without escaping them.
+         See the call to $sce.trustAsHtml in features/filters/raw.js. -->
     <span ng-bind-html="message | raw"></span>
   </div>
 </html>

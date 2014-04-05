@@ -2,6 +2,7 @@
 /*global beforeEach: false, browser: false, by: false, describe: false,
   element: false, expect: false, it: false, protractor: false */
 
+// TODO: Write this!
 describe('hello', function () {
   beforeEach(function () {
     browser.get('http://localhost:3000/');

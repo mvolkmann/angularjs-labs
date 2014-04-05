@@ -79,7 +79,7 @@ app.controller('ViewBookCtrl',
     $scope.editItem = item => {
       $scope.editing = true;
       $scope.item = item;
-      $('input:first').focus();
+      $('input:first').focus(); // TODO: Why doesn't this work?
     };
 
     $scope.getFieldClass = field => {

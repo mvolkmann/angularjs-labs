@@ -2,14 +2,6 @@
 module.exports = function (grunt) {
   grunt.initConfig({
     clean: ['build'],
-    connect: { // not using this at the moment
-      server: {
-        options: {
-          port: 3000,
-          base: '.'
-        }
-      }
-    },
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -77,6 +69,7 @@ module.exports = function (grunt) {
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  // TODO: Automate stopping and restarting server when server.js is modified.
   grunt.registerTask('server', function () {
     grunt.util.spawn({
       cmd: 'node',

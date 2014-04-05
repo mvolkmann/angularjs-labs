@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<form name="viewBook" class="form-horizontal" novalidate
+<form id="viewBook" name="viewBook" class="form-horizontal" novalidate
   ng-show="editing && book.fields">
   <div class="form-group" ng-repeat="field in book.fields">
     <label class="col-sm-2 control-label">
@@ -30,16 +30,19 @@
         placeholder="{{field.placeholder}}"
         ng-class="inputClass(field)"
         ng-model="item[field.propertyName]"
-        ng-required="field.required">
+        ng-required="field.required"
+        autofocus="{{$index === 0}}">
     </div>
   </div>
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-4">
+    <div class="col-sm-offset-2 col-sm-6">
       <button class="btn btn-default" ng-click="addItem()"
         ng-disabled="viewBook.$invalid">
         {{editing ? 'Update' : 'Add'}}
       </button>
-      Changes are not persisted<br>until this button is pressed!
+      <span class="error-box">
+        Changes are not persisted until this button is pressed!
+      </span>
     </div>
   </div>
   <hr>

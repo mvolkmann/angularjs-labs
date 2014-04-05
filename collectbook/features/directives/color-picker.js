@@ -6,19 +6,31 @@ var mod = angular.module('cb-directives');
 
 /**
  * Example usage:
- * <cb-color-picker></cb-dialog>
+ * <div cb-color-picker color="scope-property"></div>
  */
 mod.directive('cbColorPicker', () => ({
   restrict: 'AE',
   templateUrl: 'features/directives/color-picker.html',
-  //replace: true // using this causes $compile:multidir error
+  // Setting replace to true causes a $compile:tplrt error.
+  // This is because color-picker.html
+  // doesn't have a single root element.
+  //replace: true,
   scope: {
     color: '='
   },
   //link: scope => { // TODO: Why doesn't this work?
   link: function (scope) {
-    var dialog;
+    var dialog; // can't set now because template may not be loaded yet
 
+    scope.$watch('color', () => {
+      // Set fontColor to be the most readable color on top
+      // of the selected color between black and white.
+      scope.fontColor = '#' +
+        tinycolor.mostReadable(scope.color, ['black', 'white']).toHex();
+    });
+
+    // These are the colors that will appear in the dialog,
+    // in the order in which they will appear.
     scope.colors = [
       ['red', 'orange', 'yellow', 'green'],
       ['blue', 'purple', 'cyan', 'magenta'],
@@ -28,15 +40,11 @@ mod.directive('cbColorPicker', () => ({
 
     scope.pick = color => {
       scope.color = color;
-      // Set fontColor to be the most readable color on top
-      // of the selected color between black and white.
-      scope.fontColor = '#' +
-        tinycolor.mostReadable(color, ['black', 'white']).toHex();
       dialog.modal('hide');
     };
 
     scope.show = () => {
-      dialog = $('#cbColorPickerDialog');
+      if (!dialog) dialog = $('#cbColorPickerDialog');
       dialog.modal('show');
     };
   }
