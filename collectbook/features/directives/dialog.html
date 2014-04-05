@@ -7,6 +7,7 @@
       </div>
       <div class="modal-body" ng-transclude/>
       <div class="modal-footer" ng-show="btnMap">
+        <img src="images/spinner.gif" ng-show="busyRef">
         <button type="button" class="btn btn-default" data-dismiss="modal"
           ng-repeat="(text, fn) in btnMap" ng-click="fn()">
           {{text}}

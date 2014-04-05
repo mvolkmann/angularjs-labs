@@ -37,7 +37,9 @@ function getPlaceholder(type) {
     '';
 }
 
-app.controller('EditBookCtrl', ($scope, $stateParams, book, collectBookSvc) => {
+app.controller('EditBookCtrl',
+  ($scope, $stateParams, book, cbHandleErr, collectBookSvc) => {
+
   $scope.book = book.data;
 
   $scope.$watch('field.type', function (type) {
@@ -54,7 +56,7 @@ app.controller('EditBookCtrl', ($scope, $stateParams, book, collectBookSvc) => {
   function updateBook() {
     collectBookSvc.updateBook($scope.book).then(
       () => {},
-      app.handleError);
+      cbHandleErr);
   }
 
   $scope.addField = () => {

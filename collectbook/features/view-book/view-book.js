@@ -33,7 +33,7 @@ app.config(($stateProvider, $urlRouterProvider) => {
 });
 
 app.controller('ViewBookCtrl',
-  ($scope, $state, $stateParams, collectBookSvc, book, items) => {
+  ($scope, $state, $stateParams, cbHandleErr, collectBookSvc, book, items) => {
     $scope.book = book.data;
     $scope.filter = {};
     $scope.items = items.data;
@@ -62,7 +62,7 @@ app.controller('ViewBookCtrl',
           $scope.items[$scope.item.id] = $scope.item;
           resetInput();
         },
-        app.handleError);
+        cbHandleErr);
     };
 
     $scope.deleteItem = item => {
@@ -71,7 +71,7 @@ app.controller('ViewBookCtrl',
           delete $scope.items[item.id];
           resetInput();
         },
-        app.handleError);
+        cbHandleErr);
     };
 
     $scope.editBook = bookId => $state.go('editBook', {bookId: bookId});

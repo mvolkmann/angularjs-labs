@@ -20,7 +20,7 @@ app.config(($stateProvider, $urlRouterProvider) => {
     });
 });
 
-app.controller('NewBookCtrl', ($scope, collectBookSvc) => {
+app.controller('NewBookCtrl', ($scope, cbHandleErr, collectBookSvc) => {
   $scope.book = new Book();
 
   $scope.addBook = () => {
@@ -31,6 +31,6 @@ app.controller('NewBookCtrl', ($scope, collectBookSvc) => {
         $scope.$parent.books.push(book);
         $scope.book = new Book();
       },
-      app.handleError);
+      cbHandleErr);
   };
 });

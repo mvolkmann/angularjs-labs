@@ -14,10 +14,6 @@ import './features/new-book/new-book';
 import './features/view-book/view-book';
 var URL_PREFIX = 'http://localhost:3000/collectbook/';
 
-app.handleError = err => {
-  alert('error: ' + err); // TODO: Do something better.
-};
-
 app.config(($stateProvider, $urlRouterProvider) => {
   $urlRouterProvider.otherwise('/');
   // Other states are defined in other source files.
@@ -38,11 +34,22 @@ function getItemUrl(bookId, itemId) {
   return URL_PREFIX + 'book/' + bookId + '/item/' + itemId;
 }
 
-app.factory('$exceptionHandler', cbDialogSvc => (exception, cause) => {
-  //cbDialogSvc.show('cbDialog');
-  alert('JavaScript Error: ' + exception + '; ' + cause);
+/*
+app.factory('$exceptionHandler', $injector => (exception, cause) => {
+  var cbDialogSvc = $injector.get('cbDialogSvc');
+  cbDialogSvc.showError('JavaScript Error', exception.message);
   throw exception;
 });
+*/
+
+app.factory('cbHandleErr', cbDialogSvc =>
+  //(title, message) => cbDialogSvc.showError(title, message)
+  (title, message) => {
+    console.log('cbHandleErr: title =', title);
+    console.log('cbHandleErr: message =', message);
+    //cbDialogSvc.showError(title, message);
+  }
+);
 
 app.factory('collectBookSvc', $http => {
   var svc = {};
@@ -68,12 +75,12 @@ app.factory('collectBookSvc', $http => {
   return svc;
 });
 
-app.controller('MainCtrl', $rootScope => {
+app.controller('MainCtrl', ($rootScope, cbDialogSvc) => {
   $rootScope.$on('$stateChangeError',
     (event, toState, toParams, fromState, fromParams, error) => {
-      console.log('Error changing state from', fromState.name,
-        'to', toState.name, ':', error.data);
-      alert('Error changing state from "' + fromState.name +
-        '" to "' + toState.name + '": ' + JSON.stringify(error.data));
+      cbDialogSvc.showError(
+        'Error changing state from "' + fromState.name +
+        '" to "' + toState.name + '"',
+        error.data);
     });
 });
