@@ -75,7 +75,7 @@ mod.factory('cbDialogSvc', ($rootScope) => {
 mod.directive('cbDialog', () => ({
   restrict: 'AE',
   templateUrl: 'features/directives/dialog.html',
-  replace: true, // TODO: Why doesn't this work?
+  replace: true,
   transclude: true,
   scope: {
     btnMap: '=',

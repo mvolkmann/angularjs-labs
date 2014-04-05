@@ -11,10 +11,7 @@ var mod = angular.module('cb-directives');
 mod.directive('cbColorPicker', () => ({
   restrict: 'AE',
   templateUrl: 'features/directives/color-picker.html',
-  // Setting replace to true causes a $compile:tplrt error.
-  // This is because color-picker.html
-  // doesn't have a single root element.
-  //replace: true,
+  replace: true,
   scope: {
     color: '='
   },
