@@ -18,6 +18,21 @@
       ]
     },
     {
+      "filePath": "features/edit-book/edit-book.html",
+      "mods": [
+        {
+          "startRe": "Edit \"{{",
+          "length": 1,
+          "content": "      <!--Lab: Add a binding expression that displays the\n               \"displayName\" property of the object in the scope property \"book\". -->"
+        },
+        {
+          "startRe": "<tr ng-repeat=",
+          "length": 4,
+          "content": "  <tr ng-repeat=\"field in book.fields\">\n    <!--Lab: Add td elements that contain binding expressions that display\n             the following properties in the object in the scope property \"fields\":\n             displayName, type, and required -->"
+        }
+      ]
+    },
+    {
       "filePath": "features/view-book/view-book.html",
       "mods": [
         {

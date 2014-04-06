@@ -4,7 +4,7 @@ var http = require('http');
 
 module.exports = function (grunt) {
   grunt.initConfig({
-    clean: ['build'],
+    clean: ['build', 'node_modules'],
     jshint: {
       options: {
         jshintrc: '.jshintrc'
