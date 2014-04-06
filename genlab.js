@@ -3,6 +3,7 @@
 
 var child_process = require('child_process');
 var fs = require('fs');
+var rimraf = require('rimraf');
 
 var onWindows = /^win/.test(process.platform);
 
@@ -37,6 +38,7 @@ function findMatchingLine(lines, re, startIndex) {
 
 // Parse the JSON file.
 var options = {encoding: 'utf8'};
+console.log('parsing',  filePath);
 fs.readFile(filePath, options, function (err, content) {
   if (err) {
     console.error(err.code === 'ENOENT' ? 'no such lab file' : err);
@@ -46,18 +48,22 @@ fs.readFile(filePath, options, function (err, content) {
   var obj = JSON.parse(content);
   //console.log('genlab: obj =', obj);
 
+  // Remove destDir if it already exists.
+  console.log('removing',  obj.destDir, 'directory');
+  rimraf.sync(obj.destDir);
+
   // Copy srcDir to a new directory with the name of the lab.
+  console.log('copying', obj.srcDir, 'directory to', obj.destDir);
   var cmd = onWindows ? 'xcopy /s' : 'cp -R';
   cmd += ' ' + obj.srcDir + ' ' + obj.destDir;
-  console.log('copying', obj.srcDir, 'to', obj.destDir);
   child_process.exec(cmd, function (err) {
     if (err) throw new Error(err);
 
-    console.log('copied', obj.srcDir, 'to', obj.destDir);
+    //console.log('copied', obj.srcDir, 'to', obj.destDir);
 
     // For each file in files ...
     obj.files.forEach(function (file) {
-      console.log('processing', file.filePath);
+      console.log('modifying', file.filePath);
 
       var path = obj.destDir + '/' + file.filePath;
       var content = fs.readFileSync(path, options);
@@ -66,23 +72,26 @@ fs.readFile(filePath, options, function (err, content) {
 
       // For each mod in mods ...
       file.mods.forEach(function (mod) {
+        //console.log('genlab: mod =', mod);
+
         // Find start of line range using startRe.
         var startIndex = findMatchingLine(lines, mod.startRe);
+        //console.log('genlab: startIndex =', startIndex);
         
         // Find end of line range using length or endRe.
         var endIndex =
           mod.endRe ? findMatchingLine(lines. mod.endRe, startIndex) :
-          mod.length ? startIndex + mod.length - 1 :
+          mod.length !== undefined ? startIndex + mod.length - 1 :
           -1;
 
         if (startIndex === -1 || endIndex === -1) {
           throw new Error('no match found in ' + path +
-            ' for ' + JSON.stringify(mod));
+            ' for ' + mod.startRe);
         }
 
         // Make the described replacement.
-        console.log('replacing lines', startIndex, 'to', endIndex,
-          'with', mod.content);
+        //console.log('replacing lines', startIndex, 'to', endIndex,
+        //  'with', mod.content);
         var newLines = mod.content.split('\n');
         var numLines = endIndex - startIndex + 1;
         var args = [startIndex, numLines].concat(newLines);

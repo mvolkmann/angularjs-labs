@@ -1,0 +1,31 @@
+{
+  "srcDir": "collectbook",
+  "destDir": "lab3",
+  "files": [
+    {
+      "filePath": "index.html",
+      "mods": [
+        {
+          "startRe": "ui-view=\"nav\"",
+          "length": 1,
+          "content": "      <!--Lab: Add ui-view attribute with value \"nav\".-->\n      <div id=\"nav\"></div>"
+        },
+        {
+          "startRe": "ui-view=\"content\"",
+          "length": 1,
+          "content": "      <!--Lab: Add ui-view attribute with value \"content\".-->\n      <div id=\"content\"></div>"
+        }
+      ]
+    },
+    {
+      "filePath": "features/view-book/view-book.html",
+      "mods": [
+        {
+          "startRe": "{{field.displayName}}",
+          "length": 1,
+          "content": "      <!--Lab: Add a binding expression that displays the\n               \"displayName\" property of the current \"field\" object. -->"
+        }
+      ]
+    }
+  ]
+}

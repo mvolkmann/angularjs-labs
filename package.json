@@ -1,0 +1,23 @@
+{
+  "name": "genlab",
+  "version": "0.0.0",
+  "description": "Generates a lab directory based on a JSON file.",
+  "main": "genlab.js",
+  "dependencies": {
+    "rimraf": "~2.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mvolkmann/angularjs-labs.git"
+  },
+  "author": "R. Mark Volkmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mvolkmann/angularjs-labs/issues"
+  },
+  "homepage": "https://github.com/mvolkmann/angularjs-labs"
+}
