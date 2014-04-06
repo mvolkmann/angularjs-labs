@@ -1,4 +1,7 @@
 'use strict';
+/*jshint esnext: true */
+var http = require('http');
+
 module.exports = function (grunt) {
   grunt.initConfig({
     clean: ['build'],
@@ -61,21 +64,39 @@ module.exports = function (grunt) {
         tasks: []
       },
       js: {
-        files: ['Gruntfile.js', '*.js', 'features/**/*.js'],
-        tasks: ['jshint', 'traceur']
+        files: ['Gruntfile.js', 'app.js', 'features/**/*.js'],
+        tasks: ['jshint', 'traceur:webapp']
+      },
+      server: {
+        files: ['server.js'],
+        tasks: ['jshint', 'traceur:server', 'restart']
       }
     }
   });
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  // TODO: Automate stopping and restarting server when server.js is modified.
   grunt.registerTask('server', function () {
-    grunt.util.spawn({
+    var options = {
       cmd: 'node',
       args: ['build/server.js'],
       opts: {stdio: 'inherit'}
+    };
+    // Must give this a callback, but it doesn't need to do anything.
+    grunt.util.spawn(options, function () {});
+    console.log('refresh browser to reconnect to server');
+  });
+
+  grunt.registerTask('restart', function () {
+    var done = this.async(); // This is an asynchronous Grunt task.
+    var req = http.get('http://localhost:3000/shutdown', function (res) {
+      // Give server time to shutdown.
+      setTimeout(function () {
+        grunt.task.run('server');
+        done();
+      }, 1000);
     });
+    req.end();
   });
 
   grunt.registerTask('default',

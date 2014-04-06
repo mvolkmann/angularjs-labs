@@ -232,9 +232,24 @@ app.post('/collectbook/book/:bookId/item', (req, res) => {
   res.send(getItemPath(bookId, item.id), 200);
 });
 
+// HTTP route to retrieve all books as a JSON array where
+// the values are objects with id and name properties.
+app.get('/shutdown', (req, res) => {
+  res.send(null, 204);
+
+  server.close(() => process.exit());
+
+  // The server won't actually shutdown until all connections are destroyed.
+  sockets.forEach(socket => socket.destroy());
+});
+
 // Start the server listening on a given port
 // and let the user know the port.
 // Browse localhost:3000.
 var PORT = 3000;
-app.listen(PORT);
-console.log('listening on', PORT);
+var server = app.listen(PORT);
+
+// Keep track of all connections so they can be destroyed
+// if a request to shutdown this server is received.
+var sockets = [];
+server.on('connection', socket => sockets.push(socket));
