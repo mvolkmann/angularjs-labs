@@ -11,6 +11,16 @@ module.exports = function (grunt) {
       },
       all: ['Gruntfile.js', '*.js', 'features/**/*.js']
     },
+    csslint: {
+      strict: {
+        options: {
+          'box-model': false, // allows setting width/height with box properties
+          ids: false, // allows ids to be used in CSS selectors
+          'overqualified-elements': false // allows element name with class
+        },
+        src: ['build/styles/*.css']
+      }
+    },
     less: {
       all: {
         files: [{
@@ -31,6 +41,15 @@ module.exports = function (grunt) {
       all: {
       }
     },
+    touch: { // used to force livereload after server restart
+      /*
+      options: {
+        force: true,
+        mtime: true
+      },
+      */
+      src: ['index.html'],
+    },
     traceur: {
       options: {
         includeRuntime: true, // includes runtime code in generated file
@@ -50,16 +69,22 @@ module.exports = function (grunt) {
       }
     },
     watch: {
-      options: { livereload: true },
+      app: {
+        options: { livereload: true },
+        files: ['build/app.js']
+      },
       css: {
-        files: ['styles/*.css'],
-        tasks: ['csslint']
+        options: { livereload: true },
+        files: ['build/styles/*.css'],
+        // TODO: Why does livereload only work if "touch" is used?
+        tasks: ['csslint', 'touch']
       },
       less: {
         files: ['styles/*.less'],
         tasks: ['less']
       },
       html: {
+        options: { livereload: true },
         files: ['index.html', 'features/**/*.html'],
         tasks: []
       },
@@ -69,23 +94,12 @@ module.exports = function (grunt) {
       },
       server: {
         files: ['server.js'],
-        tasks: ['jshint', 'traceur:server', 'restart']
+        tasks: ['jshint', 'traceur:server', 'restart', 'touch']
       }
     }
   });
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
-  grunt.registerTask('server', function () {
-    var options = {
-      cmd: 'node',
-      args: ['build/server.js'],
-      opts: {stdio: 'inherit'}
-    };
-    // Must give this a callback, but it doesn't need to do anything.
-    grunt.util.spawn(options, function () {});
-    console.log('refresh browser to reconnect to server');
-  });
 
   grunt.registerTask('restart', function () {
     var done = this.async(); // This is an asynchronous Grunt task.
@@ -97,6 +111,16 @@ module.exports = function (grunt) {
       }, 1000);
     });
     req.end();
+  });
+
+  grunt.registerTask('server', function () {
+    var options = {
+      cmd: 'node',
+      args: ['build/server.js'],
+      opts: {stdio: 'inherit'}
+    };
+    // Must give this a callback, but it doesn't need to do anything.
+    grunt.util.spawn(options, function () {});
   });
 
   grunt.registerTask('default',

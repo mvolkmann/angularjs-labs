@@ -23,7 +23,9 @@
     "grunt-contrib-watch": "~0.6.0",
     "grunt-protractor-runner": "^0.2.4",
     "grunt-traceur-simple": "^0.9.3",
-    "matchdep": "~0.3.0"
+    "matchdep": "~0.3.0",
+    "grunt-contrib-csslint": "^0.2.0",
+    "grunt-touch": "^0.1.0"
   },
   "dependencies": {
     "express": "^3.5.0",
