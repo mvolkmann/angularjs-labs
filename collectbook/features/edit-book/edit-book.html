@@ -85,12 +85,14 @@
   <tr>
     <th>Name</th>
     <th>Type</th>
+    <th>Placeholder</th>
     <th>Required?</th>
     <th>Delete</th>
   </tr>
   <tr ng-repeat="field in book.fields">
     <td>{{field.displayName}}</td>
     <td>{{field.type}}</td>
+    <td>{{field.placeholder}}</td>
     <td>{{field.required}}</td>
     <td class="delete-btn">
       <span class="glyphicon glyphicon-remove" ng-click="deleteField(field)"</span>

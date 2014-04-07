@@ -1,9 +1,9 @@
 'use strict';
 /*global beforeEach: false, browser: false, by: false, describe: false,
-  element: false, expect: false, it: false, protractor: false */
+  element: false, expect: false, it: false, protractor: false,
+  xdescribe: false */
 
-// TODO: Finish this and other tests.
-describe('new-book', function () {
+xdescribe('new-book', function () {
   var ptor;
 
   beforeEach(function () {
