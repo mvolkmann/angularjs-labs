@@ -1,14 +1,14 @@
 <div>
   <!-- The background color of this button is the currently selected color.
-      Press the button to display a modal dialog
-      where a different color can be selected. -->
+       Press the button to display a modal dialog
+       where a different color can be selected. -->
   <button class="btn btn-default" ng-click="show()"
     style="background-color: {{color}}; color: {{fontColor}}">
     Color...
   </button>
 
   <!-- This is a modal dialog that is displayed
-      when the button above is pressed. -->
+       when the button above is pressed. -->
   <div cb-dialog id="cbColorPickerDialog" title="Color Picker">
     Select a color from the grid below.
     <table>

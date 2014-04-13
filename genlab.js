@@ -7,12 +7,60 @@ var rimraf = require('rimraf');
 
 var onWindows = /^win/.test(process.platform);
 
+function exit(msg) {
+  console.error(msg);
+  process.exit(1);
+}
+
 // Get the first command-line argument.
 var filePath = process.argv[2];
 if (!filePath) {
-  console.error('usage: node genlab.js {lab-name}.json');
-  process.exit(1);
+  exit('usage: node genlab.js {lab-name}.txt');
 }
+
+// Read all the lines in the file.
+var options = {encoding: 'utf8'};
+var lines = fs.readFileSync(filePath, options).split('\n');
+
+var lineIndex = 0;
+function nextLine() {
+  return lines[lineIndex++];
+}
+
+// Get srcDir.
+var line = nextLine();
+var match = line.match(/^srcDir (.+)$/);
+if (!match) exit('first line must start with "srcDir"');
+var srcDir = match[1];
+
+// Get destDir.
+line = nextLine();
+match = line.match(/^destDir (.+)$/);
+if (!match) {
+  throw 'second line must start with "destDir"';
+}
+var destDir = match[1];
+
+// Get first file to process.
+line = nextLine();
+match = line.match(/^file (.+)$/);
+if (!match) {
+  throw 'third line must start with "file"';
+}
+var firstFile = match[1];
+
+// Remove destDir if it already exists.
+console.log('removing', destDir, 'directory');
+rimraf.sync(destDir);
+
+// Copy srcDir to a new directory with the name of the lab.
+console.log('copying', srcDir, 'directory to', destDir);
+var cmd = onWindows ? 'xcopy /s' : 'cp -R';
+cmd += ' ' + srcDir + ' ' + destDir;
+child_process.exec(cmd, function (err) {
+  if (err) exit(err);
+  processFile(firstFile);
+});
 
 /**
  * Returns the index of the first line in an array of lines
@@ -36,72 +84,66 @@ function findMatchingLine(lines, re, startIndex) {
   return found ? index : -1;
 }
 
-// Parse the JSON file.
-var options = {encoding: 'utf8'};
-console.log('parsing',  filePath);
-fs.readFile(filePath, options, function (err, content) {
-  if (err) {
-    console.error(err.code === 'ENOENT' ? 'no such lab file' : err);
-    process.exit(2);
+function processFile(filePath) {
+  console.log('modifying', filePath);
+
+  var path = destDir + '/' + filePath;
+  var oldLines = fs.readFileSync(path, options).split('\n');
+
+  processMods(filePath, oldLines);
+
+  // Write over old file.
+  fs.writeFile(path, oldLines.join('\n'));
+
+  var line = nextLine();
+  if (!line) return; // end of file
+
+  var match = line.match(/^file (.+)$/);
+  if (!match) exit('expected file path but found', line);
+  processFile(match[1]);
+}
+
+function processMods(filePath, oldLines) {
+  var line = nextLine();
+
+  while (true) {
+    processMod(filePath, line, oldLines);
+
+    line = nextLine();
+    if (!line) break; // end of file
+
+    var match = line.match(/^file (.+)$/);
+    if (match) { // new file to process
+      lineIndex--; // back up one one
+      break;
+    }
+  }
+}
+
+function processMod(filePath, startRe, oldLines) {
+  var line = nextLine();
+  var length = parseInt(line, 10);
+
+  // Get lines up to the next empty line.
+  var newLines = [];
+  while (true) {
+    line = nextLine();
+    if (!line) break;
+    newLines.push(line);
   }
 
-  var obj = JSON.parse(content);
-  //console.log('genlab: obj =', obj);
+  // Find start of line range using startRe.
+  var startIndex = findMatchingLine(oldLines, startRe);
+  if (startIndex === -1) {
+    exit('no match found in ' + filePath + ' for ' + startRe);
+  }
+  //console.log('genLab2: re', startRe, 'matched at index', index);
 
-  // Remove destDir if it already exists.
-  console.log('removing',  obj.destDir, 'directory');
-  rimraf.sync(obj.destDir);
-
-  // Copy srcDir to a new directory with the name of the lab.
-  console.log('copying', obj.srcDir, 'directory to', obj.destDir);
-  var cmd = onWindows ? 'xcopy /s' : 'cp -R';
-  cmd += ' ' + obj.srcDir + ' ' + obj.destDir;
-  child_process.exec(cmd, function (err) {
-    if (err) throw new Error(err);
-
-    //console.log('copied', obj.srcDir, 'to', obj.destDir);
-
-    // For each file in files ...
-    obj.files.forEach(function (file) {
-      console.log('modifying', file.filePath);
-
-      var path = obj.destDir + '/' + file.filePath;
-      var content = fs.readFileSync(path, options);
-      var lines = content.split('\n');
-      //console.log('genlab: lines =', lines);
-
-      // For each mod in mods ...
-      file.mods.forEach(function (mod) {
-        //console.log('genlab: mod =', mod);
-
-        // Find start of line range using startRe.
-        var startIndex = findMatchingLine(lines, mod.startRe);
-        //console.log('genlab: startIndex =', startIndex);
-        
-        // Find end of line range using length or endRe.
-        var endIndex =
-          mod.endRe ? findMatchingLine(lines. mod.endRe, startIndex) :
-          mod.length !== undefined ? startIndex + mod.length - 1 :
-          -1;
-
-        if (startIndex === -1 || endIndex === -1) {
-          throw new Error('no match found in ' + path +
-            ' for ' + mod.startRe);
-        }
-
-        // Make the described replacement.
-        //console.log('replacing lines', startIndex, 'to', endIndex,
-        //  'with', mod.content);
-        var newLines = mod.content.split('\n');
-        var numLines = endIndex - startIndex + 1;
-        var args = [startIndex, numLines].concat(newLines);
-        lines.splice.apply(lines, args);
-      }); // end of loop through mods
-
-      //console.log('new content of', file.filePath, 'is', lines);
-
-      // Write over old file.
-      fs.writeFile(path, lines.join('\n'));
-    }); // end of loop through files
-  });
-});
+  var endIndex = startIndex + length - 1;
+  console.log('replacing lines',
+    startIndex + 1, 'to', endIndex + 1,
+    'with\n' + newLines.join('\n') + '\n');
+  var numLines = endIndex - startIndex + 1;
+  var args = [startIndex, numLines].concat(newLines);
+  oldLines.splice.apply(oldLines, args);
+}

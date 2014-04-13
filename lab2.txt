@@ -1,0 +1,60 @@
+srcDir collectbook
+destDir lab2
+file index.html
+<html ng-app=
+1
+<!--Lab: Add ng-app directive for "CollectBook" module to the html tag. -->
+<html>
+
+file app.js
+var app =
+2
+//Lab: Declare variable "app" and set it to
+//Lab: a new AngularJS module named "CollectBook"
+//Lab: with the following module dependencies:
+//Lab: cb-directives, cb-filters, and ui.router."
+
+app.config
+0
+//Lab: Notice how the module in the variable "app" is used
+//Lab: to define configuration for the module, in this case a route.
+
+app\.factory
+0
+//Lab: Notice how the module in the variable "app" is used
+//Lab: to define a service for the module with the "factory" method.
+
+app\.controller
+0
+//Lab: Notice how the module in the variable "app" is used to define a controller.
+
+file features/edit-book/edit-book.js
+var app =
+1
+//Lab: Declare variable "app" and set it to
+//Lab: the existing AngularJS module named "CollectBook".
+
+file features/new-book/new-book.js
+var app =
+1
+//Lab: Declare variable "app" and set it to
+//Lab: the existing AngularJS module named "CollectBook".
+
+file features/view-book/view-book.js
+var app =
+1
+//Lab: Declare variable "app" and set it to
+//Lab: the existing AngularJS module named "CollectBook".
+
+file features/filters/main.js
+var mod =
+1
+//Lab: Declare variable "mod" and set it to a new AngularJS module
+//Lab: named "cb-filters" with the following module dependency:
+//Lab: ngSanitize.
+
+file features/filters/obj-to-arr.js
+var mod =
+1
+//Lab: Declare variable "mod" and set it to
+//Lab: the existing AngularJS module named "cb-filters".

@@ -92,7 +92,12 @@ function getBooks() {
           // Parens are needed around the object literal
           // so the parser doesn't think that's a block.
           books => resolve(books.map(
-            book => ({id: book.id, displayName: book.displayName}))),
+            book => {
+              return {
+                id: book.id,
+                displayName: book.displayName //.toUpperCase()
+              };
+            })),
           reject);
       },
       reject);

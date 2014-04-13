@@ -4,7 +4,8 @@
 
 // This is the starting JavaScript file for this web application.
 
-// Create the main AngularJS module, specifying the modules on which it depends.
+// Create the main AngularJS module,
+// specifying the modules on which it depends.
 // This line must precede import of modules that use it.
 var app = angular.module('CollectBook',
   ['cb-directives', 'cb-filters', 'ui.router']);

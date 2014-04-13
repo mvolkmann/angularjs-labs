@@ -1,0 +1,229 @@
+srcDir collectbook
+destDir lab4
+file index.html
+ng-app=
+1
+<!--Lab: Add the ng-app directive set to the app name "CollectBook". -->
+<html>
+
+<body
+1
+  <!--Lab: Add the ng-controller directive set to the controller name "MainCtrl". -->
+  <body>
+
+ui-view="nav"
+1
+      <!--Lab: Add ui-view directive with value "nav".-->
+      <div id="nav"></div>
+
+ui-view="content"
+1
+      <!--Lab: Add ui-view directive with value "content".-->
+      <div id="content"></div>"
+
+file features/edit-book/edit-book.html
+id="name"
+1
+      <!--Lab: Add ng-model directive to tie this "input" to "field.displayName". -->
+      <input id="name" name="name" type="text" class="form-control"
+        placeholder="field name"
+
+id="type"
+1
+      <!--Lab: Add ng-model directive to tie this "select" to "field.type". -->
+      <select id="type" class="form-control">
+
+id="placeholder"
+2
+      <!--Lab: Add ng-model directive to tie this "input" to "field.displayName". -->
+      <input id="placeholder" type="text" class="form-control">
+
+id="required"
+2
+      <!--Lab: Add ng-model directive to tie this "input" to "field.required". -->
+      <input id="required" class="checkbox" type="checkbox">
+
+id="add-btn"
+3
+    <!--Lab: Add ng-click directive that calls the "addField"
+             scope function when this button is clicked.
+             Add ng-disabled directive that disables this button
+             if the "editBook.$invalid property is true. -->
+    <div id="add-btn" class="col-sm-offset-3 col-sm-4">
+      <button class="btn btn-default"
+        ng-click="addField()" ng-disabled="editBook.$invalid">
+
+<tr ng-repeat
+1
+  <!--Lab: Add ng-repeat directive that iterates through the
+           objects in the "book.fields" array and sets "field". -->
+  <tr>
+
+<td class="delete-btn">
+2
+    <td class="delete-btn">
+      <!--Lab: Add ng-click directive to the "span" below
+               that calls the "deleteField" scope function
+               passing it the current "field" object.  -->
+      <span class="glyphicon glyphicon-remove"></span>
+
+file features/view-book/view-book.html
+1
+<div ng-hide
+<!--Lab: Add ng-hide directive that hides this "div"
+         if there are any elements in the "book.fields" array.  -->
+<div>         
+
+Click
+  <!--Lab: Add ng-click directive to this "span" that calls the
+  "editBook" scope function, passing it the "id" property of the
+  current "book". -->
+  <span class="glyphicon glyphicon-wrench"></span>
+
+<div ng-show="book.fields">
+1
+<!--Lab: Add ng-show directive to this "div" that shows it
+         if there are any elements in the "book.fields" array.  -->
+<div>
+
+<div ng-show="editing" ng-click="editing = false">
+1
+  <!--Lab: Add ng-show directive to show this if "editing" is true.
+           Add ng-click directive to set editing to false if this is clicked. -->
+  <div>
+
+<div ng-hide="editing" ng-click="editing = true">
+1
+  <!--Lab: Add ng-hide directive to hide this if "editing" is true.
+           Add ng-click directive to set editing to true if this is clicked. -->
+  <div>
+
+<form id="viewBook"
+1
+<!--Lab: Add ng-show directive to this "form" to show it if
+         editing is true AND there are elements in the book.fields array. -->
+<form id="viewBook" name="viewBook" class="form-horizontal" novalidate>
+
+<div class="form-group" ng-repeat="field in book.fields">
+1
+  <!--Lab: Add ng-repeat directive that iterates through all the objects
+           in the "book.fields" array, setting "field" to each one. -->
+
+<div class="col-sm-4" ng-switch
+1
+    <!--Lab: Add ng-switch directive that switches on the value returned by
+             the scope function "inputType" when passed the current "field". -->
+    <div class="col-sm-4">
+
+<div ng-switch-when="color" cb-color-picker
+1
+      <!--Lab: Add ng-switch-when directive that handles the "color" case. -->
+      <div cb-color-picker
+
+<input ng-switch-default
+6
+      <!--Lab: Add ng-switch-default directive that handles all other cases.
+               Add ng-class directive that use the CSS class
+               returned by "inputClass" scope function
+               when passed the current "field".
+               Add ng-model directive that ties this "input" to the
+               "item" object property with the name in "field.propertyName".
+               Add ng-required directive that makes this "input"
+               required if "field.required" is true. -->
+      <input ng-switch-default type="{{inputType(field)}}"
+        placeholder="{{field.placeholder}}"
+        autofocus="{{$index === 0}}">
+
+<button class="btn btn-default" ng-click="addOrUpdateItem()"
+2
+      <!--Lab: Add ng-click directive that calls the "addOrUpdateItem"
+               scope function when this "button" is pressed.
+               Add ng-disabled directive that disables this "button"
+               if "viewBook.$invalid" is true. -->
+      <button class="btn btn-default" ng-click="addOrUpdateItem()"
+
+<table ng-show="book.fields">
+1
+<!--Lab: Add ng-show directive that shows this "table" if there
+         are any elements in the "book.fields" array. -->
+<table>
+
+<th ng-repeat="field in book.fields">
+1
+    <!--Lab: Add ng-repeat directive that iterates through all the objects
+             in the "book.fields" array, setting "field" to each one. -->
+    <th>
+
+<a ng-click="sortOn(field)">{{field.displayName}}</a>
+1
+      <!--Lab: Add ng-click diretive that calls the "sortOn"
+               scope function, passing it the current "field"
+               when this link is clicked. -->
+      <a ng-click="sortOn(field)">{{field.displayName}}</a>
+
+&#x25b2;
+1
+      <!--Lab: Add ng-show directive that shows this span if
+               fields matches sortField AND reverse is false. -->
+      <span>&#x25b2;</span>
+
+&#x25bc;
+1
+      <!--Lab: Add ng-show directive that shows this span if
+               fields matches sortField AND reverse is true. -->
+      <span>&#x25bc;</span>
+
+<th class="filter" ng-repeat="field in book.fields">
+1
+    <!--Lab: Add ng-repeat directive that iterates through all the objects
+             in the "book.fields" array, setting "field" to each one. -->
+    <th class="filter">
+
+<input type="text" ng-model="filter[field.propertyName]" placeholder="filter">
+1
+      <!--Lab: Add ng-model directive that ties this "input" to the
+               "filter" object property with the name in "field.propertyName". -->
+      <input type="text" ng-model="filter[field.propertyName]" placeholder="filter">
+
+objToArr
+2
+  <!--Lab: Add ng-repeat directive that iterates through all the
+           key/value pairs in "items", putting the key in "index"
+           and the value in "item".
+           Use the "objToArr" filter to convert "items" from an object
+           to an array of its values so the values can be filtered.
+           Use the "filter" filter, passing it the "filter" object.
+           Use the "orderBy" filter to sort the items on the key
+           specified by "sortKey".  The sort should be ascending
+           if "reverse" is false and descending otherwise.
+           Add ng-click directive to call the "editItem" scope function,
+           passing it the current "item". -->
+  <tr>
+
+getFieldClass
+1
+    <!--Lab: Add ng-repeat directive to iterate over "book.fields",
+             setting "field" to each object.
+             Add ng-class directive to set the CSS class to what is returned
+             by the "getFieldClass" scope function when passed "field". -->
+    <td>
+
+deleteItem
+1
+      <!--Lab: Add ng-click directive to call the "deleteItem" scope function
+               , passing it "item" when this "span" is clicked. -->
+      <span class="glyphicon glyphicon-remove"></span>
+
+file features/new-book/new-book.html
+<input id="name"
+3
+      <!--Lab: Add ng-model directive set to tie the "input" value
+               to the scope property "book.displayName". -->
+      <input id="name" type="text" class="form-control"
+        placeholder="name" autofocus>
+
+<button
+1
+      <!--Lab: Add ng-click directive that calls the "addBook"
+               scope method when this button is pressed. -->
+      <button class="btn btn-default">Add</button>

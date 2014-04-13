@@ -61,14 +61,27 @@ mod.factory('cbDialogSvc', ($rootScope) => {
 
 /**
  * Example usage:
- * <cb-dialog id="myDialog" title="Make a Move" btn-map="btnMap">
+ * <cb-dialog id="myDialog" heading="Make a Move" btn-map="btnMap">
  *   ... content goes here ...
  * </cb-dialog>
- * where btnMap is an object on the scope
+ *
+ * btnMap is an object on the scope
  * whose keys are the text for buttons in the footer and
  * whose values are functions to invoke when the buttons are pressed.
- * Omit btn-map if no buttons are needed.
+ * Omit btn-map if no buttons are needed at the bottom of the dialog.
  * In that case there will be no footer area.
+ *
+ * data is an object on the scope that can be used to
+ * make data available to the trancluded HTML
+ * and make result data available to the code
+ * that causes the dialog to be displayed.
+ * It can also hold functions to be invoked
+ * when specific buttons are pressed.
+ *
+ * busyRef is a scope property. When it is truthy,
+ * a spinner GIF will be displayed in the footer to indicate
+ * that something is happening that the user should wait for.
+ *
  * To display the dialog,
  * cbDialogSvc.show('myDialog');
  */
@@ -79,6 +92,8 @@ mod.directive('cbDialog', () => ({
   transclude: true,
   scope: {
     btnMap: '=',
-    title: '@'
+    busyRef: '=',
+    heading: '@',
+    data: '='
   }
 }));

@@ -1,0 +1,60 @@
+srcDir collectbook
+destDir lab3
+file features/edit-book/edit-book.html
+Edit "{{
+1
+<!--Lab: Add a binding expression that displays the "displayName" property
+         of the object in the scope property "book" in the h3. -->
+<h3></h3>"
+
+<tr ng-repeat=
+5
+  <tr ng-repeat="field in book.fields">
+    <!--Lab: Add td elements that contain binding expressions that display
+             the following properties in the object in the scope property "field":
+             displayName, type, placeholder, and required -->"
+
+file features/view-book/view-book.html
+{{field.displayName}}
+1
+      <!--Lab: Add a binding expression that displays the scope property
+               "displayName" of the current "field" object. -->
+
+{{editing 
+1
+        <!--Lab: If the scope property "editing" is true,
+                 display "Update".  Otherwise display "Add".
+                 The ternary operator can be used in binding expressions. -->
+
+sortOn
+1
+      <!--Lab: Display the value of the "displayName" property in
+               the "field" object scope property within the "a" element. -->
+      <a ng-click=\"sortOn(field)\"></a>"
+
+{{item
+1
+      <!--Lab: Display the property of the "item" object
+               whose name is in "field.propertyName". -->
+
+file features/directives/color-picker.html
+<button
+2
+  <!--Lab: Add a style attribute to the button that sets the
+           background-color and color CSS properties to the values
+           of the scope properties color and fontColor. -->
+  <button class="btn btn-default" ng-click="show()">
+
+file features/directives/dialog.html
+<h4
+1
+        <!--Lab: Add the value of the "heading" scope property
+                 to the content of the "h4" element. -->
+        <h4 class=\"modal-title\"></h4>"
+
+ng-repeat
+2
+          ng-repeat="(text, fn) in btnMap" ng-click="fn()">
+          <!--Lab: Make the text on the button be
+                   the value of the scope property "text".
+                   We will discuss the ng-repeat directive later. -->
