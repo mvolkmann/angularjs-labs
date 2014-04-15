@@ -141,9 +141,11 @@ function processMod(filePath, startRe, oldLines) {
   //console.log('genLab2: re', startRe, 'matched at index', index);
 
   var endIndex = startIndex + length - 1;
+  /*
   console.log('replacing lines',
     startIndex + 1, 'to', endIndex + 1,
     'with\n' + newLines.join('\n') + '\n');
+  */
   var numLines = endIndex - startIndex + 1;
   var args = [startIndex, numLines].concat(newLines);
   oldLines.splice.apply(oldLines, args);

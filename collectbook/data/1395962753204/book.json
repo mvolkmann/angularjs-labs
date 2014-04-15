@@ -12,6 +12,12 @@
       "type": "text",
       "propertyName": "city",
       "required": true
+    },
+    {
+      "displayName": "Goalie Name",
+      "type": "text",
+      "placeholder": "stops the puck",
+      "propertyName": "goalieName"
     }
   ],
   "displayName": "Hockey",
