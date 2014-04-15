@@ -3,6 +3,7 @@
 
 var child_process = require('child_process');
 var fs = require('fs');
+var newline = require('os').EOL;
 var rimraf = require('rimraf');
 
 var onWindows = /^win/.test(process.platform);
@@ -20,7 +21,7 @@ if (!filePath) {
 
 // Read all the lines in the file.
 var options = {encoding: 'utf8'};
-var lines = fs.readFileSync(filePath, options).split('\n');
+var lines = fs.readFileSync(filePath, options).split(newline);
 
 var lineIndex = 0;
 function nextLine() {
@@ -56,7 +57,7 @@ rimraf.sync(destDir);
 // Copy srcDir to a new directory with the name of the lab.
 console.log('copying', srcDir, 'directory to', destDir);
 var cmd = onWindows ? 'xcopy /s' : 'cp -R';
-cmd += ' ' + srcDir + ' ' + destDir;
+cmd += ' ' + srcDir + ' ' + destDir + (onWindows ? '\\' : '');
 child_process.exec(cmd, function (err) {
   if (err) exit(err);
   processFile(firstFile);
@@ -88,12 +89,12 @@ function processFile(filePath) {
   console.log('modifying', filePath);
 
   var path = destDir + '/' + filePath;
-  var oldLines = fs.readFileSync(path, options).split('\n');
+  var oldLines = fs.readFileSync(path, options).split(newline);
 
   processMods(filePath, oldLines);
 
   // Write over old file.
-  fs.writeFile(path, oldLines.join('\n'));
+  fs.writeFile(path, oldLines.join(newline));
 
   var line = nextLine();
   if (!line) return; // end of file
