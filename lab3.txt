@@ -5,14 +5,14 @@ Edit "{{
 1
 <!--Lab: Add a binding expression that displays the "displayName" property
          of the object in the scope property "book" in the h3. -->
-<h3></h3>"
+<h3></h3>
 
 <tr ng-repeat=
 5
   <tr ng-repeat="field in book.fields">
     <!--Lab: Add td elements that contain binding expressions that display
              the following properties in the object in the scope property "field":
-             displayName, type, placeholder, and required -->"
+             displayName, type, placeholder, and required -->
 
 file features/view-book/view-book.html
 {{field.displayName}}
@@ -30,7 +30,7 @@ sortOn
 1
       <!--Lab: Display the value of the "displayName" property in
                the "field" object scope property within the "a" element. -->
-      <a ng-click=\"sortOn(field)\"></a>"
+      <a ng-click="sortOn(field)"></a>
 
 {{item
 1
@@ -50,7 +50,7 @@ file features/directives/dialog.html
 1
         <!--Lab: Add the value of the "heading" scope property
                  to the content of the "h4" element. -->
-        <h4 class=\"modal-title\"></h4>"
+        <h4 class="modal-title"></h4>"
 
 ng-repeat
 2

@@ -1,0 +1,36 @@
+srcDir collectbook
+destDir lab5
+file features/edit-book/edit-book.html
+<form name="editBook" class="form-horizontal col-sm-5" novalidate>
+1
+<!--Lab: Add "name" attribute with value "editBook".
+         Add "novalidate" attribute. -->
+<form class="form-horizontal col-sm-5">
+
+<input id="name"
+3
+      <!--Lab: Add "name" attribute with value "name".
+               Add ng-pattern directive with the value "/^(?!id$)/"
+               which means any value but the string "id".
+               Add "required" attribute. -->
+      <input id="name" type="text" class="form-control"
+        placeholder="field name" ng-model="field.displayName"
+        cb-identifier>
+
+file features/view-book/view-book.html
+<form id="viewBook"
+2
+<!--Lab: Add "name" attribute with value "viewBook".
+         Add "novalidate" attribute. -->
+<form id="viewBook" class="form-horizontal"
+  ng-show="editing && book.fields">
+
+<input ng-switch-default
+6
+      <!--Lab: Add ng-required directive that makes a value for this "input"
+               required if the scope expression "field.required" is true.
+      <input ng-switch-default type="{{inputType(field)}}"
+        placeholder="{{field.placeholder}}"
+        ng-class="inputClass(field)"
+        ng-model="item[field.propertyName]"
+        autofocus="{{$index === 0}}">

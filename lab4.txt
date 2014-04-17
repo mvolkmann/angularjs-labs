@@ -23,7 +23,7 @@ ui-view="content"
 
 file features/edit-book/edit-book.html
 id="name"
-1
+2
       <!--Lab: Add ng-model directive to tie this "input" to "field.displayName". -->
       <input id="name" name="name" type="text" class="form-control"
         placeholder="field name"
@@ -35,7 +35,7 @@ id="type"
 
 id="placeholder"
 2
-      <!--Lab: Add ng-model directive to tie this "input" to "field.displayName". -->
+      <!--Lab: Add ng-model directive to tie this "input" to "field.placeholder". -->
       <input id="placeholder" type="text" class="form-control">
 
 id="required"
@@ -45,13 +45,12 @@ id="required"
 
 id="add-btn"
 3
-    <!--Lab: Add ng-click directive that calls the "addField"
-             scope function when this button is clicked.
-             Add ng-disabled directive that disables this button
-             if the "editBook.$invalid property is true. -->
     <div id="add-btn" class="col-sm-offset-3 col-sm-4">
-      <button class="btn btn-default"
-        ng-click="addField()" ng-disabled="editBook.$invalid">
+      <!--Lab: Add ng-click directive that calls the "addField"
+               scope function when this button is clicked.
+               Add ng-disabled directive that disables this button
+               if the "editBook.$invalid property is true. -->
+      <button class="btn btn-default">
 
 <tr ng-repeat
 1
@@ -62,27 +61,26 @@ id="add-btn"
 <td class="delete-btn">
 2
     <td class="delete-btn">
-      <!--Lab: Add ng-click directive to the "span" below
-               that calls the "deleteField" scope function
+      <!--Lab: Add ng-click directive that calls the "deleteField" scope function
                passing it the current "field" object.  -->
       <span class="glyphicon glyphicon-remove"></span>
 
 file features/view-book/view-book.html
-1
 <div ng-hide
+1
 <!--Lab: Add ng-hide directive that hides this "div"
          if there are any elements in the "book.fields" array.  -->
 <div>         
 
 Click
-  <!--Lab: Add ng-click directive to this "span" that calls the
-  "editBook" scope function, passing it the "id" property of the
-  current "book". -->
+1
+  <!--Lab: Add ng-click directive that calls the "editBook" scope function,
+           passing it the "id" property of the current "book". -->
   <span class="glyphicon glyphicon-wrench"></span>
 
 <div ng-show="book.fields">
 1
-<!--Lab: Add ng-show directive to this "div" that shows it
+<!--Lab: Add ng-show directive that shows this "div"
          if there are any elements in the "book.fields" array.  -->
 <div>
 
@@ -108,6 +106,7 @@ Click
 1
   <!--Lab: Add ng-repeat directive that iterates through all the objects
            in the "book.fields" array, setting "field" to each one. -->
+  <div class="form-group">
 
 <div class="col-sm-4" ng-switch
 1
@@ -127,20 +126,19 @@ Click
                returned by "inputClass" scope function
                when passed the current "field".
                Add ng-model directive that ties this "input" to the
-               "item" object property with the name in "field.propertyName".
-               Add ng-required directive that makes this "input"
-               required if "field.required" is true. -->
-      <input ng-switch-default type="{{inputType(field)}}"
+               "item" object property with the name in "field.propertyName". -->
+      <input
         placeholder="{{field.placeholder}}"
+        ng-required="field.required"
         autofocus="{{$index === 0}}">
 
-<button class="btn btn-default" ng-click="addOrUpdateItem()"
+<button class="btn btn-default" ng-click="addOrUpdateItem
 2
       <!--Lab: Add ng-click directive that calls the "addOrUpdateItem"
                scope function when this "button" is pressed.
                Add ng-disabled directive that disables this "button"
                if "viewBook.$invalid" is true. -->
-      <button class="btn btn-default" ng-click="addOrUpdateItem()"
+      <button class="btn btn-default">
 
 <table ng-show="book.fields">
 1
@@ -154,23 +152,23 @@ Click
              in the "book.fields" array, setting "field" to each one. -->
     <th>
 
-<a ng-click="sortOn(field)">{{field.displayName}}</a>
+<a ng-click="sortOn\(field\)">{{field.displayName}}</a>
 1
       <!--Lab: Add ng-click diretive that calls the "sortOn"
                scope function, passing it the current "field"
                when this link is clicked. -->
-      <a ng-click="sortOn(field)">{{field.displayName}}</a>
+      <a>{{field.displayName}}</a>
 
-&#x25b2;
+<span ng-show="field === sortField && !reverse">&#x25b2;</span>
 1
       <!--Lab: Add ng-show directive that shows this span if
-               fields matches sortField AND reverse is false. -->
+               field matches sortField AND reverse is false. -->
       <span>&#x25b2;</span>
 
-&#x25bc;
+<span ng-show="field === sortField && reverse">&#x25bc;</span>
 1
       <!--Lab: Add ng-show directive that shows this span if
-               fields matches sortField AND reverse is true. -->
+               field matches sortField AND reverse is true. -->
       <span>&#x25bc;</span>
 
 <th class="filter" ng-repeat="field in book.fields">
@@ -179,26 +177,11 @@ Click
              in the "book.fields" array, setting "field" to each one. -->
     <th class="filter">
 
-<input type="text" ng-model="filter[field.propertyName]" placeholder="filter">
+<input type="text" ng-model="filter\[field.propertyName\]" placeholder="filter">
 1
       <!--Lab: Add ng-model directive that ties this "input" to the
                "filter" object property with the name in "field.propertyName". -->
       <input type="text" ng-model="filter[field.propertyName]" placeholder="filter">
-
-objToArr
-2
-  <!--Lab: Add ng-repeat directive that iterates through all the
-           key/value pairs in "items", putting the key in "index"
-           and the value in "item".
-           Use the "objToArr" filter to convert "items" from an object
-           to an array of its values so the values can be filtered.
-           Use the "filter" filter, passing it the "filter" object.
-           Use the "orderBy" filter to sort the items on the key
-           specified by "sortKey".  The sort should be ascending
-           if "reverse" is false and descending otherwise.
-           Add ng-click directive to call the "editItem" scope function,
-           passing it the current "item". -->
-  <tr>
 
 getFieldClass
 1
@@ -225,5 +208,7 @@ file features/new-book/new-book.html
 <button
 1
       <!--Lab: Add ng-click directive that calls the "addBook"
-               scope method when this button is pressed. -->
+               scope method when this "button" is pressed.
+               Add ng-disabled directive that disables this "button"
+               if no value has been entered in the "input" above. -->
       <button class="btn btn-default">Add</button>
