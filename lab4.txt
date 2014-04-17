@@ -19,7 +19,7 @@ ui-view="nav"
 ui-view="content"
 1
       <!--Lab: Add ui-view directive with value "content".-->
-      <div id="content"></div>"
+      <div id="content"></div>
 
 file features/edit-book/edit-book.html
 id="name"
