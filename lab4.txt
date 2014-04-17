@@ -73,7 +73,8 @@ file features/view-book/view-book.html
 <div>         
 
 Click
-1
+2
+  Click
   <!--Lab: Add ng-click directive that calls the "editBook" scope function,
            passing it the "id" property of the current "book". -->
   <span class="glyphicon glyphicon-wrench"></span>
@@ -97,7 +98,7 @@ Click
   <div>
 
 <form id="viewBook"
-1
+2
 <!--Lab: Add ng-show directive to this "form" to show it if
          editing is true AND there are elements in the book.fields array. -->
 <form id="viewBook" name="viewBook" class="form-horizontal" novalidate>
@@ -206,9 +207,9 @@ file features/new-book/new-book.html
         placeholder="name" autofocus>
 
 <button
-1
+2
       <!--Lab: Add ng-click directive that calls the "addBook"
                scope method when this "button" is pressed.
                Add ng-disabled directive that disables this "button"
                if no value has been entered in the "input" above. -->
-      <button class="btn btn-default">Add</button>
+      <button class="btn btn-default">
