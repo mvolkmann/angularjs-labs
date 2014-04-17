@@ -49,7 +49,7 @@ id="add-btn"
       <!--Lab: Add ng-click directive that calls the "addField"
                scope function when this button is clicked.
                Add ng-disabled directive that disables this button
-               if the "editBook.$invalid property is true. -->
+               if the "editBook.$invalid" property is true. -->
       <button class="btn btn-default">
 
 <tr ng-repeat
@@ -122,7 +122,10 @@ Click
 
 <input ng-switch-default
 6
-      <!--Lab: Add ng-switch-default directive that handles all other cases.
+      <!--Lab: Add type attribute whose value is a binding expression
+               that gets the type by calling the "inputType" scope method,
+               passing it the "field" scope property.
+               Add ng-switch-default directive that handles all other cases.
                Add ng-class directive that use the CSS class
                returned by "inputClass" scope function
                when passed the current "field".
@@ -155,7 +158,7 @@ Click
 
 <a ng-click="sortOn\(field\)">{{field.displayName}}</a>
 1
-      <!--Lab: Add ng-click diretive that calls the "sortOn"
+      <!--Lab: Add ng-click directive that calls the "sortOn"
                scope function, passing it the current "field"
                when this link is clicked. -->
       <a>{{field.displayName}}</a>
@@ -182,7 +185,7 @@ Click
 1
       <!--Lab: Add ng-model directive that ties this "input" to the
                "filter" object property with the name in "field.propertyName". -->
-      <input type="text" ng-model="filter[field.propertyName]" placeholder="filter">
+      <input type="text" placeholder="filter">
 
 getFieldClass
 1
@@ -194,14 +197,14 @@ getFieldClass
 
 deleteItem
 1
-      <!--Lab: Add ng-click directive to call the "deleteItem" scope function
-               , passing it "item" when this "span" is clicked. -->
+      <!--Lab: Add ng-click directive to call the "deleteItem" scope function,
+               passing it "item" when this "span" is clicked. -->
       <span class="glyphicon glyphicon-remove"></span>
 
 file features/new-book/new-book.html
 <input id="name"
 3
-      <!--Lab: Add ng-model directive set to tie the "input" value
+      <!--Lab: Add ng-model directive to tie the "input" value
                to the scope property "book.displayName". -->
       <input id="name" type="text" class="form-control"
         placeholder="name" autofocus>
