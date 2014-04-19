@@ -134,6 +134,7 @@ function processMod(filePath, startRe, oldLines) {
   while (true) {
     line = nextLine();
     if (!line) break;
+    if (line === '\\n') line = '';
     newLines.push(line);
   }
 

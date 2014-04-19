@@ -42,7 +42,7 @@ app.controller('EditBookCtrl',
 
   $scope.book = book.data;
 
-  $scope.$watch('field.type', function (type) {
+  $scope.$watch('field.type', type => {
     $scope.field.placeholder = getPlaceholder(type);
   });
 
