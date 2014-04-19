@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict';
 /*jshint esnext: true */
 
@@ -56,8 +57,11 @@ rimraf.sync(destDir);
 
 // Copy srcDir to a new directory with the name of the lab.
 console.log('copying', srcDir, 'directory to', destDir);
-var cmd = onWindows ? 'xcopy /s' : 'cp -R';
-cmd += ' ' + srcDir + ' ' + destDir + (onWindows ? '\\' : '');
+var cmd = onWindows ?
+  'xcopy /s ' + srcDir + ' ' + destDir + '\\ /exclude:build+node_modules' :
+  //'cp -R';
+  'rsync -a --exclude build --exclude node_modules ' + srcDir + '/ ' + destDir;
+console.log('genlab: cmd =', cmd);
 child_process.exec(cmd, function (err) {
   if (err) exit(err);
   processFile(firstFile);

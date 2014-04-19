@@ -28,7 +28,7 @@ file features/view-book/view-book.html
 <input ng-switch-default
 6
       <!--Lab: Add ng-required directive that makes a value for this "input"
-               required if the scope expression "field.required" is true.
+               required if the scope expression "field.required" is true. -->
       <input ng-switch-default type="{{inputType(field)}}"
         placeholder="{{field.placeholder}}"
         ng-class="inputClass(field)"
