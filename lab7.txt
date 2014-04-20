@@ -1,0 +1,97 @@
+srcDir collectbook
+destDir lab7
+file app.js
+app\.factory\('\$exceptionHandler',
+0
+//Lab: Note how the $exceptionHandler service is being redefined
+//     to display exceptions in a dialog box rather than the console.
+//     We will look at the implementation of cbDialogSvc later.
+
+app\.factory\('collectBookSvc',
+1
+//Lab: Inject the $http service into this service
+//     using an arrow function.
+//     The body of the service follows.
+app.factory('collectBookSvc', add-code-snippet-here
+
+svc\.addItem =
+2
+  svc.addItem = (bookId, item) =>
+    //Lab: Return the result of an HTTP POST request using
+    //     an arrow function and a $http shorthand method.
+    //     The URL is the result of concatenating the result of
+    //     passing bookId to the getBookUrl function
+    //     and '/item'.  Pass the item object as data.
+    ... add missing line here ...
+
+svc\.deleteBook =
+1
+  //Lab: Add a deleteBook method to this service that takes bookId
+  //     and returns the result of the $http shorthand method for
+  //     DELETE when passed getBookUrl(bookId).
+
+svc\.getBook =
+1
+  //Lab: Add a getBook method to this service that takes bookId
+  //     and returns the result of the $http shorthand method for
+  //     GET when passed the result of calling
+  //     the getBookUrl function with bookId.
+
+svc\.updateBook =
+1
+  //Lab: Add an updateBook method to this service
+  //     that takes book (a Book object) and
+  //     returns the result of the $http shorthand method for
+  //     PUT when passed getBookUrl(book.id) and book.
+
+file features/new-book/new-book.js
+\$scope\.addBook =
+13
+  //Lab: Add an addBook scope method that takes no arguments.
+  //     Call collectBookSvc.addBook, passing it the book object on the scope.
+  //     That returns a promise.  Call the "then" method on the promise,
+  //     passing it success and error callback functions.
+  //     The success function will be passed the URL of the newly created book.
+  //     Add the book object to the books array in the parent scope
+  //     using the method $scope.$parent.books.push.
+  //     Set the scope property book to a new Book object
+  //     in preparation for the next book to be added.
+  //     Use the injected cbHandleErr function as the error callback.
+
+file features/edit-book/edit-book.js
+function updateBook
+4
+  function updateBook() {
+    //Lab: Call collectBookSvc.updateBook, passing it the book object on the scope.
+    //     That returns a promise.  Call the "then" method on the promise,
+    //     passing it success and error callback functions.
+    //     The success function doesn't need any parameters and does nothing.
+    //     Use the injected cbHandleErr function as the error callback.
+
+file features/view-book/view-book.js
+\$scope\.addOrUpdateItem =
+6
+    $scope.addOrUpdateItem = () => {
+      //Lab: Call collectBookSvc.addItem, passing it the id of the
+      //     book object on the scope and the item object on the scope.
+      //     That returns a promise.  Call the "then" method on the promise,
+      //     passing it success and error callback functions.
+      //     The success function doesn't need any parameters.
+      //     It should set the element in the scope array "items"
+      //     at index $scope.item.id to the item object on the scope,
+      //     and call the resetInput function.
+      //     Use the injected cbHandleErr function as the error callback.
+
+\$scope\.deleteItem =
+7
+    $scope.deleteItem = item => {
+      // TODO: Consider asking the user to confirm this action.
+      //Lab: Call collectBookSvc.deleteItem,
+      //     passing it the id of the book object on the scope
+      //     and the id of the item object on the scope.
+      //     That returns a promise.  Call the "then" method on the promise,
+      //     passing it success and error callback functions.
+      //     The success function doesn't need any parameters.
+      //     It should delete the element in the scope array "items"
+      //     at index item.id and call the resetInput function.
+      //     Use the injected cbHandleErr function as the error callback.

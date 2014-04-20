@@ -3,98 +3,98 @@ destDir lab6
 file features/new-book/new-book.js
 app\.controller\('NewBookCtrl'
 1
-<!--Lab: Define the "NewBookCtrl" controller using the module in app.
-         Inject these services: $scope, cbHandleErr, and collectBookSvc.
-         Use an ES6 arrow function with this syntax:
-         (arg1, arg2, arg3) => {
-           ... code goes here ...
-         }
-         The body of the controller function is below. -->
+//Lab: Define the "NewBookCtrl" controller using the module in app.
+//     Inject these services: $scope, cbHandleErr, and collectBookSvc.
+//     Use an ES6 arrow function with this syntax:
+//     (arg1, arg2, arg3) => {
+//       ... code goes here ...
+//     }
+//     The body of the controller function is below.
 app.controller('name-goes-here', (args-go-here) => {
 
 \$scope\.book =
 1
-  <!--Lab: Add a scope property named "book", set to a new Book object.
-           The constructor function for Book doesn't require any arguments.
-           Note where this is used in new-book.html. -->
+  //Lab: Add a scope property named "book", set to a new Book object.
+  //     The constructor function for Book doesn't require any arguments.
+  //     Note where this is used in new-book.html.
   $scope.book = ...
 
 \$scope\.addBook =
 1
-  <!--Lab: Add a scope method named "addBook", that has no parameters.
-           Use an ES6 arrow function.
-           The body of the function is below.
-           Note where this is called in new-book.html. -->
+  //Lab: Add a scope method named "addBook", that has no parameters.
+  //     Use an ES6 arrow function.
+  //     The body of the function is below.
+  //     Note where this is called in new-book.html.
   $scope.addBook = ...
 
 file features/edit-book/edit-book.js
 app\.controller\('EditBookCtrl',
 2
-<!--Lab: Define the "EditBookCtrl" controller using the module in app.
-         Inject these services: $scope, $stateParams,
-         book, cbHandleErr, and collectBookSvc.
-         Use an ES6 arrow function.
-         The body of the controller function is below. -->
+//Lab: Define the "EditBookCtrl" controller using the module in app.
+//     Inject these services: $scope, $stateParams,
+//     book, cbHandleErr, and collectBookSvc.
+//     Use an ES6 arrow function.
+//     The body of the controller function is below.
 
 \$scope\.book =
 1
-  <!--Lab: Add a scope property named "book", set to book.data.
-           This is the result of a REST call, discussed later.
-           Note where this is used in edit-book.html. -->
+  //Lab: Add a scope property named "book", set to book.data.
+  //     This is the result of a REST call, discussed later.
+  //     Note where this is used in edit-book.html.
 
 \$scope\.\$watch\('field.type'
 3
-  <!--Lab: Add a watch on the scope property "field.type".
-           Use an ES6 function for the listener function.
-           It should take one parameter, type, and
-           set the scope property field.placeholder to
-           the result of passing type to
-           the getPlaceholder function defined above. -->
+  //Lab: Add a watch on the scope property "field.type".
+  //     Use an ES6 function for the listener function.
+  //     It should take one parameter, type, and
+  //     set the scope property field.placeholder to
+  //     the result of passing type to
+  //     the getPlaceholder function defined above.
 
 \$scope\.addField =
 5
-  <!--Lab: Add a scope method named "addField", that has no parameters.
-           Use an ES6 arrow function that does three things:
-           1) add the object in $scope.field to the $scope.book.fields array
-           2) call updateBook with no arguments
-           2) call resetInput with no arguments
-           Note where this is called in edit-book.html. -->
+  //Lab: Add a scope method named "addField", that has no parameters.
+  //     Use an ES6 arrow function that does three things:
+  //     1) add the object in $scope.field to the $scope.book.fields array
+  //     2) call updateBook with no arguments
+  //     2) call resetInput with no arguments
+  //     Note where this is called in edit-book.html.
 
 \$scope\.deleteField =
 0
-  <!--Lab: Study the following function and ask questions
-           if it's not clear what it does.
-           Note where this is called in edit-book.html. -->
+  //Lab: Study the following function and ask questions
+  //     if it's not clear what it does.
+  //     Note where this is called in edit-book.html.
 
 file features/view-book/view-book.js
 app\.controller\('ViewBookCtrl',
 2
-<!--Lab: Define the "ViewBookCtrl" controller using the module in app.
-         Inject these services: $scope, $state, cbHandleErr,
-         collectBookSvc, book, and items.
-         Use an ES6 arrow function.
-         The body of the controller function is below. -->
+//Lab: Define the "ViewBookCtrl" controller using the module in app.
+//     Inject these services: $scope, $state, cbHandleErr,
+//     collectBookSvc, book, and items.
+//     Use an ES6 arrow function.
+//     The body of the controller function is below.
 app.controller('name-goes-here', (args-go-here) => {
 
 \$scope\.book =
 0
-  <!--Lab: Study the following scope data assignments.
-           book and items are set the results of REST calls, covered later.
-           filter holds data used by the "filter" filter, covered later.
-           item holds an Item object, used to add an item to the current book.
-           Note where they are used in view-book.html. -->
+  //Lab: Study the following scope data assignments.
+  //     book and items are set the results of REST calls, covered later.
+  //     filter holds data used by the "filter" filter, covered later.
+  //     item holds an Item object, used to add an item to the current book.
+  //     Note where they are used in view-book.html.
 
 \$scope\.editItem =
 5
-    <!--Lab: Add a scope method named "editItem" with one parameter, item.
-             Use an ES6 arrow function that does these two things.
-             1) set the scope property editing to true
-             2) set the scope property "item" to item
-             Note where this is called in view-book.html. -->
+    //Lab: Add a scope method named "editItem" with one parameter, item.
+    //     Use an ES6 arrow function that does these two things.
+    //     1) set the scope property editing to true
+    //     2) set the scope property "item" to item
+    //     Note where this is called in view-book.html.
 
 \$scope\.getFieldClass =
 0
-    <!--Lab: Study the remaining scope methods and
-             ask questions if it is unclear what they do.
-             Note where they are called in view-book.html. -->
+    //Lab: Study the remaining scope methods and
+    //     ask questions if it is unclear what they do.
+    //     Note where they are called in view-book.html.
 \n
