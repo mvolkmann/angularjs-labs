@@ -1,0 +1,82 @@
+srcDir collectbook
+destDir lab8
+file app.js
+app\.factory\('\$exceptionHandler',
+0
+//Lab: Note how the module factory method is used to create a service
+//     that overrides the existing $exceptionHandler service.
+
+app\.factory\('cbHandleErr',
+3
+//Lab: Use the module factory method to define a service named "cbHandleErr".
+//     Inject the cdDialogSvc service.
+//     Return a function that has one parameter, err, and calls
+//     cbDialogSvc.showError('Server Error', err.data)
+
+app\.factory\('collectBookSvc',
+2
+//Lab: Use the module factory method to define a service named "collectBookSvc".
+//     Inject the $http service.
+//     Inside the method, declare a variable named "svc"
+//     and assign an empty object to it.
+
+svc\.addBook =
+1
+  //Lab: Add a property to svc named "addBook" whose value is a function
+  //     that takes one parameter, book, and returns the result of
+  //     $http.post(URL_PREFIX + 'book', book)
+  //     Note where this service method is called in new-book.js.
+
+svc\.addItem =
+2
+  //Lab: Add a property to svc named "addItem" whose value is a function
+  //     that takes two parameters, bookId and item, and returns the result of
+  //     $http.post(getBookUrl(bookId) + '/item', item);
+  //     Note where this service method is called in view-book.js.
+
+svc\.deleteBook =
+1
+  //Lab: Add a property to svc named "deleteBook" whose value is a function
+  //     that takes one parameter, bookId, and returns the result of
+  //     $http.delete(getBookUrl(bookId)
+  //     Note where this service method is called in nav.js.
+
+svc\.deleteItem =
+1
+  //Lab: Add a property to svc named "deleteItem" whose value is a function
+  //     that takes two parameters, bookId and itemId, and returns the result of
+  //     $http.delete(getItemUrl(bookId, itemId))
+  //     Note where this service method is called in view-book.js.
+
+svc\.getBook =
+1
+  //Lab: Add a property to svc named "getBook" whose value is a function
+  //     that takes one parameter, bookId, and returns the result of
+  //     $http.get(getBookUrl(bookId))
+  //     Note where this service method is called in WHERE?
+
+svc\.getBooks =
+1
+  //Lab: Add a property to svc named "getBooks" whose value is a function
+  //     that takes no parameters and returns the result of
+  //     $http.get(URL_PREFIX + 'book')
+  //     Note where this service method is called in edit-book.js and view-book.js.
+
+svc\.getItems =
+1
+  //Lab: Add a property to svc named "getItems" whose value is a function
+  //     that takes one parameter, bookId, and returns the result of
+  //     $http.get(getBookUrl(bookId) + '/item')
+  //     Note where this service method is called in view-book.js.
+
+svc\.updateBook =
+1
+  //Lab: Add a property to svc named "updateBook" whose value is a function
+  //     that takes one parameter, book, and returns the result of
+  //     $http.put(getBookUrl(book.id), book)
+  //     Note where this service method is called in edit-book.js.
+
+return svc;
+1
+  //Lab: Return the svc object and
+  //     close the service function and call to app.factory.

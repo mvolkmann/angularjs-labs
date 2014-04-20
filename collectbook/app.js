@@ -65,10 +65,10 @@ app.factory('cbHandleErr', cbDialogSvc =>
 app.factory('collectBookSvc', $http => {
   var svc = {};
 
+  svc.addBook = book => $http.post(URL_PREFIX + 'book', book);
+
   svc.addItem = (bookId, item) =>
     $http.post(getBookUrl(bookId) + '/item', item);
-
-  svc.addBook = book => $http.post(URL_PREFIX + 'book', book);
 
   svc.deleteBook = bookId => $http.delete(getBookUrl(bookId));
 

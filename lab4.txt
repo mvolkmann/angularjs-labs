@@ -163,18 +163,6 @@ Click
                when this link is clicked. -->
       <a>{{field.displayName}}</a>
 
-<span ng-show="field === sortField && !reverse">&#x25b2;</span>
-1
-      <!--Lab: Add ng-show directive that shows this span if
-               field matches sortField AND reverse is false. -->
-      <span>&#x25b2;</span>
-
-<span ng-show="field === sortField && reverse">&#x25bc;</span>
-1
-      <!--Lab: Add ng-show directive that shows this span if
-               field matches sortField AND reverse is true. -->
-      <span>&#x25bc;</span>
-
 <th class="filter" ng-repeat="field in book.fields">
 1
     <!--Lab: Add ng-repeat directive that iterates through all the objects
@@ -194,12 +182,6 @@ getFieldClass
              Add ng-class directive to set the CSS class to what is returned
              by the "getFieldClass" scope function when passed "field". -->
     <td>
-
-deleteItem
-1
-      <!--Lab: Add ng-click directive to call the "deleteItem" scope function,
-               passing it "item" when this "span" is clicked. -->
-      <span class="glyphicon glyphicon-remove"></span>
 
 file features/new-book/new-book.html
 <input id="name"
