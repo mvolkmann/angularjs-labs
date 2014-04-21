@@ -4,7 +4,7 @@
 
 var child_process = require('child_process');
 var fs = require('fs');
-var newline = require('os').EOL;
+var newline = '\n'; //require('os').EOL;
 var rimraf = require('rimraf');
 
 var onWindows = /^win/.test(process.platform);
@@ -31,6 +31,7 @@ function nextLine() {
 
 // Get srcDir.
 var line = nextLine();
+console.log(line);
 var match = line.match(/^srcDir (.+)$/);
 if (!match) exit('first line must start with "srcDir"');
 var srcDir = match[1];
@@ -58,12 +59,13 @@ rimraf.sync(destDir);
 // Copy srcDir to a new directory with the name of the lab.
 console.log('copying', srcDir, 'directory to', destDir);
 var cmd = onWindows ?
-  'xcopy /s ' + srcDir + ' ' + destDir + '\\ /exclude:build+node_modules' :
-  //'cp -R';
+  //'xcopy /e .\\' + srcDir + ' .\\' + destDir + '\\\\ /exclude:excludes.txt' :
+  'robocopy ' + srcDir + ' ' + destDir + ' /s /xd build node_modules > log:Nul' :
   'rsync -a --exclude build --exclude node_modules ' + srcDir + '/ ' + destDir;
 console.log('genlab: cmd =', cmd);
 child_process.exec(cmd, function (err) {
-  if (err) exit(err);
+  if (err) console.log(err);
+  //if (err) exit(err);
   processFile(firstFile);
 });
 
