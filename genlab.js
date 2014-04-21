@@ -128,6 +128,9 @@ function processMods(filePath, oldLines) {
 function processMod(filePath, startRe, oldLines) {
   var line = nextLine();
   var length = parseInt(line, 10);
+  if (isNaN(length)) {
+    exit('invalid length after ' + startRe + ' for ' + filePath);
+  }
 
   // Get lines up to the next empty line.
   var newLines = [];

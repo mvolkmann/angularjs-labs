@@ -40,7 +40,7 @@ app.controller('NavCtrl', ($scope, $state, books, collectBookSvc) => {
     }
   };
 
-  // JSHint doesn't yet understand enhanced object literals.
+  // JSHint doesn't yet understand ES6 enhanced object literals.
   $scope.editBook = bookId => $state.go('editBook', {bookId: bookId});
 
   $scope.viewBook = bookId => $state.go('viewBook', {bookId: bookId});

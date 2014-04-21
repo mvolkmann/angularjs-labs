@@ -1,0 +1,97 @@
+srcDir collectbook
+destDir lab10
+file index.html
+<script src="http:\/\/.+\/angular-ui-router.min.js">
+0
+    <!--Lab: Note the script tag for the ui-router library. -->
+
+<div id="nav"
+1
+      <!--Lab: add ui-view directive with value "nav". -->
+      <div id="nav"></div>
+
+<div id="content"
+1
+      <!--Lab: add ui-view directive with value "content". -->
+      <div id="content"></div>
+
+file app.js
+app\.config\(
+13
+//Lab: Pass to app.config an injectable function that injects
+//     the $stateProvider and $urlRouterProvider services.
+//     Inside the function, do two things.
+//     1) Call the "otherwise" method on $urlRouterProvider
+//        to set the default route to "/".
+//     2) Call the "state" method on $stateProvider to define
+//        a state named "home" whose URL is "/" and
+//        has a "views" property that associates the view name "nav"
+//        with app.navConfig which is defined in nav.js.
+//        Nothing needs to be associated with the view name "content"
+//        because this state doesn't display anything there.
+app.config();
+
+\$rootScope\.\$on\('\$stateChangeError',
+1
+  //Lab: Supply the missing event name in the call to $rootScope.$on below
+  //     in order to listen for state change errors.
+  //     When these occur, the code below displays information
+  //     about them in a dialog.
+  $rootScope.$on('event-name-goes-here',
+
+file features/nav/nav.js
+app.navConfig = {
+7
+//Lab: Set app.navConfig.  This is used in many other JavaScript files.
+//     The value should be an object literal with the following properties:
+//     1) templateUrl set to "features/nav/nav.html"
+//     2) controller set to "NavCtrl"
+//     3) resolve set to an object literal with the property "books"
+//        set to a function that injects collectBookSvc and returns
+//        the result of calling the getBooks method in collectBookSvc
+
+app\.controller\('NavCtrl',
+1
+//Lab: Inject the $state service into this controller.
+app.controller('NavCtrl', ($scope, books, collectBookSvc) => {
+
+\$scope\.editBook =
+1
+  //Lab: Add scope method "editBook" that takes bookId
+  //     and changes the ui-router state to "editBook",
+  //     passing it the parameter object {bookId: bookId}.
+  $scope.editBook = bookId => $state.go('editBook', {bookId: bookId});
+
+\$scope\.viewBook =
+1
+  //Lab: Add scope method "viewBook" that takes bookId
+  //     and changes the ui-router state to "viewBook",
+  //     passing it the parameter object {bookId: bookId}.
+  $scope.viewBook = bookId => $state.go('viewBook', {bookId: bookId});
+
+file features/new-book/new-book.js
+app.config\(
+0
+//Lab: Study the configuration of the "newBook" state below.
+//     It populates the "nav" and "content" views.
+
+file features/edit-book/edit-book.js
+app.config\(
+0
+//Lab: Study the configuration of the "editBook" state below.
+//     It populates the "nav" and "content" views.
+//     Note what must be resolved before the view is rendered.
+
+file features/view-book/view-book.js
+app.config\(
+0
+//Lab: Study the configuration of the "viewBook" state below.
+//     It populates the "nav" and "content" views.
+//     Note what must be resolved before the view is rendered.
+
+\$scope\.editBook =
+1
+    //Lab: Add scope method "editBook" that takes bookId
+    //     and changes the ui-router state to "editBook",
+    //     passing it the parameter object {bookId: bookId}.
+
