@@ -4,7 +4,7 @@
 
 var child_process = require('child_process');
 var fs = require('fs');
-var newline = '\n'; //require('os').EOL;
+var newline = require('os').EOL; //'\n';
 var rimraf = require('rimraf');
 
 var onWindows = /^win/.test(process.platform);
