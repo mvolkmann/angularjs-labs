@@ -1,0 +1,35 @@
+srcDir collectbook
+destDir lab12
+file index.html
+<span ng-bind-html=
+1
+    <!--Lab: Add use of the custom "raw" filter to the message below.  -->
+    <span ng-bind-html="message"></span>
+
+file features/nav/nav.html
+<div class="book-row"
+1
+  <!--Lab: Use a filter to iterate through the books
+           in order by their "displayName" property. -->
+  <div class="book-row" ng-repeat="book in books">
+
+file features/view-book/view-book.html
+<tr ng-repeat="\(index, item\) in items
+1
+  <!--Lab: Add three filters to the ng-repeat expression below.
+           1) Use the custom "objToArr" filter to
+              create an array from the scope object "items".
+           2) Filter the items that will be included based on
+              the filter values in the scope object "filter".
+           3) Use a filter to iterate through the items
+              in order by whatever property name is in
+              the scope property "sortKey" and
+              determine whether the sort should be ascending or
+              descending based on the scope property "reverse".
+  <tr ng-repeat="(index, item) in items"
+
+file features/filters/obj-to-arr.js
+mod\.filter\('objToArr'
+0
+//Lab: Study the implementation of this custom filter
+//     and ask questions if you don't understand it.

@@ -62,10 +62,9 @@ var cmd = onWindows ?
   //'xcopy /e .\\' + srcDir + ' .\\' + destDir + '\\\\ /exclude:excludes.txt' :
   'robocopy ' + srcDir + ' ' + destDir + ' /s /xd build node_modules > log:Nul' :
   'rsync -a --exclude build --exclude node_modules ' + srcDir + '/ ' + destDir;
-console.log('genlab: cmd =', cmd);
+console.log('copy command is', cmd);
 child_process.exec(cmd, function (err) {
-  if (err) console.log(err);
-  //if (err) exit(err);
+  if (err && !onWindows) exit(err);
   processFile(firstFile);
 });
 
