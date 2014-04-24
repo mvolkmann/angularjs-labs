@@ -46,7 +46,7 @@ svc\.updateBook =
 
 file features/new-book/new-book.js
 \$scope\.addBook =
-13
+14
   //Lab: Add an addBook scope method that takes no arguments.
   //     Call collectBookSvc.addBook, passing it the book object on the scope.
   //     That returns a promise.  Call the "then" method on the promise,
@@ -88,7 +88,7 @@ file features/view-book/view-book.js
       // TODO: Consider asking the user to confirm this action.
       //Lab: Call collectBookSvc.deleteItem,
       //     passing it the id of the book object on the scope
-      //     and the id of the item object on the scope.
+      //     and the id of the item parameter.
       //     That returns a promise.  Call the "then" method on the promise,
       //     passing it success and error callback functions.
       //     The success function doesn't need any parameters.

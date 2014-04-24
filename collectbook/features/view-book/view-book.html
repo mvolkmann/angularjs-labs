@@ -64,7 +64,7 @@
        supports sorting rows on any single field. -->
   <tr>
     <th ng-repeat="field in book.fields">
-      <a ng-click="sortOn(field)">{{field.displayName}}</a>
+      <a href="" ng-click="sortOn(field)">{{field.displayName}}</a>
       <span ng-show="field === sortField && !reverse">&#x25b2;</span>
       <span ng-show="field === sortField && reverse">&#x25bc;</span>
     </th>

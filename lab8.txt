@@ -9,7 +9,7 @@ app\.factory\('\$exceptionHandler',
 app\.factory\('cbHandleErr',
 3
 //Lab: Use the module factory method to define a service named "cbHandleErr".
-//     Inject the cdDialogSvc service.
+//     Inject the cbDialogSvc service.
 //     Return a function that has one parameter, err, and calls
 //     cbDialogSvc.showError('Server Error', err.data)
 
@@ -38,7 +38,7 @@ svc\.deleteBook =
 1
   //Lab: Add a property to svc named "deleteBook" whose value is a function
   //     that takes one parameter, bookId, and returns the result of
-  //     $http.delete(getBookUrl(bookId)
+  //     $http.delete(getBookUrl(bookId))
   //     Note where this service method is called in nav.js.
 
 svc\.deleteItem =
@@ -53,7 +53,8 @@ svc\.getBook =
   //Lab: Add a property to svc named "getBook" whose value is a function
   //     that takes one parameter, bookId, and returns the result of
   //     $http.get(getBookUrl(bookId))
-  //     Note where this service method is called in WHERE?
+  //     Note where this service method is called
+  //     in edit-book.js and view-book.js.
 
 svc\.getBooks =
 1
