@@ -1,0 +1,8 @@
+srcDir collectbook
+destDir lab13
+file features/directives/keys.js
+mod\.directive\('cbDigitsOnly'
+//Lab: Define a directive named "cbDigitsOnly".
+//     This directive only needs a link function.
+//     The link function needs the parameters scope and element.
+//     

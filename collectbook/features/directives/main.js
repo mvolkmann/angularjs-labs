@@ -8,3 +8,7 @@ var mod = angular.module('cb-directives', []);
 import './color-picker';
 import './dialog';
 import './keys';
+
+mod.byId = function (id) {
+  return angular.element(document.getElementById(id));
+};

@@ -31,13 +31,13 @@ app\.config\(
 //        because this state doesn't display anything there.
 app.config();
 
-\$rootScope\.\$on\('\$stateChangeError',
+\$scope\.\$root\.\$on\('\$stateChangeError',
 1
-  //Lab: Supply the missing event name in the call to $rootScope.$on below
-  //     in order to listen for state change errors.
+  //Lab: Supply the missing event name in the call to $scope.$root.$on
+  //     below in order to listen for state change errors.
   //     When these occur, the code below displays information
   //     about them in a dialog.
-  $rootScope.$on('event-name-goes-here',
+  $scope.$root.$on('event-name-goes-here',
 
 file features/nav/nav.js
 app.navConfig = {

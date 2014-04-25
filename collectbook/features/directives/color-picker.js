@@ -1,6 +1,6 @@
 'use strict';
 /*jshint esnext: true */
-/*global $: false, angular: false, tinycolor: false */
+/*global angular: false, tinycolor: false */
 
 var mod = angular.module('cb-directives');
 
@@ -41,7 +41,10 @@ mod.directive('cbColorPicker', () => ({
     };
 
     scope.show = () => {
-      if (!dialog) dialog = $('#cbColorPickerDialog');
+      if (!dialog) {
+        //dialog = $('#cbColorPickerDialog'); // uses jQuery
+        dialog = mod.byId('cbColorPickerDialog');
+      }
       dialog.modal('show');
     };
   }

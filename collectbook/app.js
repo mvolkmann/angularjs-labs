@@ -87,8 +87,10 @@ app.factory('collectBookSvc', $http => {
 
 // When an error occurs from an attempted ui-router state change,
 // display it in a modal dialog.
-app.controller('MainCtrl', ($rootScope, cbDialogSvc) => {
-  $rootScope.$on('$stateChangeError',
+app.controller('MainCtrl', ($scope, cbDialogSvc) => {
+  $scope.version = angular.version;
+
+  $scope.$root.$on('$stateChangeError',
     (event, toState, toParams, fromState, fromParams, error) => {
       cbDialogSvc.showError(
         'Error changing state from "' + fromState.name +

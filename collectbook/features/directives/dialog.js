@@ -1,6 +1,6 @@
 'use strict';
 /*jshint esnext: true */
-/*global $: false, angular: false */
+/*global angular: false */
 
 var mod = angular.module('cb-directives');
 
@@ -11,7 +11,7 @@ mod.factory('cbDialogSvc', ($rootScope) => {
   /**
    * Hides a given dialog.
    */
-  svc.hide = id => $('#' + id).modal('hide');
+  svc.hide = id => mod.byId(id).modal('hide');
 
   /**
    * Shows a given dialog.
@@ -24,7 +24,7 @@ mod.factory('cbDialogSvc', ($rootScope) => {
    *   when the user dismisses the dialog
    */
   svc.show = (id, classes, onDismiss) => {
-    var dialog = $('#' + id);
+    var dialog = mod.byId(id);
     if (Array.isArray(classes)) {
       classes.forEach(dialog.addClass.bind(dialog));
     }

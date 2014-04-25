@@ -32,7 +32,9 @@
     <div id="center">
       <!-- This uses ui-router sibling views. -->
       <div id="nav" ui-view="nav"></div>
-      <div id="content" ui-view="content"></div>
+      <div id="content" ui-view="content">
+        AngularJS Info: {{version | json}}
+      </div>
     </div>
   </body>
 

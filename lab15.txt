@@ -1,0 +1,31 @@
+srcDir collectbook
+destDir lab15
+file features/filters/obj-to-arr.js
+return obj =>
+1
+  //Lab: Replace "condition" below with a call to the method on the
+  //     angular object that determines whether obj is an object.
+  return obj => condition ?
+
+file features/directives/main.js
+return angular\.element
+1
+  //Lab: Return a jQuery-wrapped reference to the DOM element with the
+  //     given id.  Use document.getElementById to get the DOM element
+  //     and pass that to angular.element.
+
+file app.js
+app\.controller\('MainCtrl'
+2
+app.controller('MainCtrl', ($scope, cbDialogSvc) => {
+  //Lab: Assign angular.version to a scope property named "version".
+  //     This will be used in index.html.
+
+file index.html
+<div id="content"
+2
+      <div id="content" ui-view="content">
+        <!--Lab: Add a binding expression to display AngularJS version
+                 information that is on the scope property "version".
+                 This is for debugging purposes.
+                 Use the "json" filter to display it. -->
