@@ -9,11 +9,13 @@
       <div class="modal-body" ng-transclude></div>
       <div class="modal-footer" ng-show="btnMap">
         <img src="images/spinner.gif" ng-show="busyRef">
-        <button type="button" class="btn btn-default" data-dismiss="modal"
+        <button class="btn btn-default" data-dismiss="modal"
           ng-repeat="(text, fn) in btnMap" ng-click="fn()">
           {{text}}
         </button>
       </div> <!-- modal-footer -->
     </div> <!-- modal-content -->
   </div> <!-- modal-dialog -->
+  <!-- The next closing div is for modal.
+       AngularJS complains if a comment follows that.
 </div>

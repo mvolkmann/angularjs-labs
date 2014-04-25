@@ -2,7 +2,99 @@ srcDir collectbook
 destDir lab13
 file features/directives/keys.js
 mod\.directive\('cbDigitsOnly'
-//Lab: Define a directive named "cbDigitsOnly".
-//     This directive only needs a link function.
-//     The link function needs the parameters scope and element.
-//     
+0
+//Lab: Study the "cbDigitsOnly" directive below.  It is useful in
+//     input elements that should only allow digits to be entered.
+//     Note that the only directive defintion object property needed is "link".
+//     This link function only uses the parameters scope and element.
+//     It rejects all keyDown events for keys that
+//     are not digits or for navigation.
+
+mod\.directive\('cbIdentifier'
+11
+//Lab: Define a directive named "cbIdentifier" that rejects
+//     all keydown events for characters that are not valid
+//     identifier characters and are not navigation keys.
+//     Use the isIdentifier and isNavigation functions above.
+//     This should be very similar to the cbDigitsOnly directive.
+//     Note where it is used in edit-book.html.
+
+file features/directives/dialog.js
+mod\.directive\('cbDialog'
+12
+//Lab: Define a directive named "cbDialog".
+//     It opens a Twitter Bootstrap modal containing a specified
+//     header, content, and buttons for the user to press.
+//     Allow this directive to be used as either an attribute or element.
+//     Use the HTML template dialog.html in the features/directives directory.
+//     This directive should replace the element on which it appears.
+//     It should use tranclusion to insert the content of the element
+//     where it appears into its template.
+//     Use an isolate scope that contains these properties:
+//     * btnMap - by reference
+//     * busyRef - by reference
+//     * heading - by value
+//     * data - by reference
+//     See the comments above for a description of each of these.
+mod.directive('cbDialog', () => ({
+
+file features/directives/dialog.html
+<h4 class="modal-title">
+1
+        <!--Lab: Use a binding expression to display the
+                 scope property "heading" inside this h4 element. -->
+        <h4 class="modal-title"></h4>
+
+<div class="modal-body"
+1
+      <!--Lab: Use the ng-transclude directive to specify that the
+               transcluded content should be inserted in this div. -->
+      <div class="modal-body"></div>
+
+<div class="modal-footer"
+1
+      <!--Lab: Only show the footer if a btnMap was specified. -->
+      <div class="modal-footer">
+
+<img src="images\/spinner.gif"
+1
+        <!--Lab: Only show the spinner if
+                 the scope property "busyRef" is true. -->
+        <img src="images/spinner.gif">
+
+<button class="btn btn-default" data-dismiss="modal"
+4
+        <!--Lab: Use the ng-repeat directive to iterate through
+                 the properties in the scope property "btnMap",
+                 putting the keys in the variable "text"
+                 and the values in the variable "fn".
+                 When a button is clicked, call fn.
+                 Use a binding expression to display
+                 the value of text on the each button. -->
+        <button class="btn btn-default" data-dismiss="modal">
+        </button>
+
+file features/directives/color-picker.js
+mod\.directive\('cbColorPicker'
+0
+//Lab: Study this directive and ask questions if
+//     there is anything you don't understand.
+
+file features/directives/color-picker.html
+<button
+0
+  <!--Lab: Note three things about this button.
+           1) clicking it shows the color picker dialog
+           2) background color is controlled by the scope property "color"
+           2) text color is controlled by the scope property "fontColor" -->
+
+<div cb-dialog
+0
+  <!--Lab: Note how this div uses the cb-dialog directive. -->
+
+<tr ng-repeat
+0
+      <!--Lab: Note how rows of colors are created
+               using the tr and td elements.
+               Also note that when a td is clicked,
+               its color is passed to the scope method "pick". -->
