@@ -21,6 +21,11 @@ module.exports = function (grunt) {
         src: ['build/styles/*.css']
       }
     },
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
+    },
     less: {
       all: {
         files: [{
