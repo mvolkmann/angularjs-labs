@@ -18,10 +18,12 @@ module.exports = function (config) {
       'lib/bootstrap/js/bootstrap.min.js',
       'lib/angular.min.js',
       'lib/angular-mocks.js',
+      'lib/angular-sanitize.min.js',
       'lib/angular-ui-router.min.js',
       'features/*/*.html',
       'build/app.js',
-      'test/unit/*-spec.js'
+      //'test/unit/*-spec.js'
+      'test/unit/raw-spec.js'
     ],
 
     // list of files to exclude

@@ -5,7 +5,7 @@
 describe('cbDialogSvc service', function () {
   beforeEach(module('cb-directives'));
 
-  it('should set $rootSscope properties',
+  it('should set $rootScope properties',
     inject(function ($rootScope, cbDialogSvc) {
       var title = 'some title';
       var msg = 'some message';

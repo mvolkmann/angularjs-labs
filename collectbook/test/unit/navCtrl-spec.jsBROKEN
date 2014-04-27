@@ -1,0 +1,56 @@
+'use strict';
+/*global angular: false, beforeEach: false, describe: false, expect: false,
+         inject: false, it: false */
+
+describe('navCtrl controller', function () {
+  var scope;
+
+  beforeEach(function () {
+    module('cb-directives');
+    module('ngSanitize');
+    module('cb-filters');
+    module('CollectBook');
+
+    // Provide mock version of "books" that is
+    // normally obtained from a resolve.
+    module(function ($provide) {
+      $provide.value('books', {data: []});
+    });
+
+    inject(function ($controller, $rootScope) {
+      scope = $rootScope.$new();
+      $controller('NavCtrl', {$scope: scope});
+    });
+  });
+
+  it('should navigate', function (done) {
+    inject(function ($httpBackend, $rootScope, $state) {
+      $httpBackend.whenGET(/collectbook\/book/).respond([]);
+      $httpBackend.expectGET(/collectbook\/book/);
+    
+      $httpBackend.whenGET(/features\/nav\/nav.html/).respond('');
+      $httpBackend.expectGET(/features\/nav\/nav.html/);
+
+      $httpBackend.whenGET(/features\/edit-book\/edit-book.html/).respond('');
+      $httpBackend.expectGET(/features\/edit-book\/edit-book.html/);
+
+      // TODO: Why is this event not emitted after call to editBook below?
+      $rootScope.$on('stateChangeSuccess', function (event, toState) {
+        console.log('navCtrl-spec: toState =', toState);
+        expect(toState).toBe('editBook');
+        done();
+      });
+
+      scope.editBook(1);
+
+      $rootScope.$apply();
+
+      //$state.transitionTo('editBook');
+      //expect($state.current.name).toBe('editBook');
+      //done();
+
+      //scope.viewBook(2);
+      //expect($state.current.name).toBe('viewBook');
+    });
+  });
+});

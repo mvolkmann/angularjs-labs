@@ -1,5 +1,5 @@
 'use strict';
-/*global describe: false, expect: false, it: false */
+/*global angular: false, describe: false, expect: false, it: false */
 describe('KarmaDemo module', function () {
   var module = angular.module('CollectBook');
 
