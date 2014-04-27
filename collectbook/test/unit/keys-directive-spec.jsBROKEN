@@ -1,0 +1,48 @@
+'use strict';
+/*global $: false, angular: false, beforeEach: false, describe: false, expect: false,
+         inject: false, it: false */
+
+describe('cbDigitsOnly directive', function () {
+  beforeEach(module('cb-directives'));
+
+  it('should restrict to digits', function (done) {
+    inject(function ($compile, $rootScope) {
+      var scope = $rootScope.$new();
+
+      var html = '<input type="text" cb-digits-only>';
+      var element = angular.element(html);
+      $compile(element)(scope);
+
+      element.on('change', function () {
+        console.log('keys: element.val() =', element.val());
+        expect(element.val()).toBe('1'); // A was rejected and 1 was accepted
+      });
+
+      // TODO: I have tried many ways to trigger a keypress event.
+      // TODO: It seems none of them result in the value of the input changing.
+      // TODO: According to this post, it is not possible:
+      // TODO: http://stackoverflow.com/questions/15729913/
+      // TODO: execute-triggered-keypress-javascript;
+      var eventName = 'keypress';
+      //var event = document.createEvent('UIEvents');
+      //event.initEvent('keydown');
+      //element.dispatchEvent(event);
+      var evt = $.Event(eventName);
+      evt.bubbles = true;
+      evt.cancelable = true;
+      evt.charCode = 65;
+      evt.currentTarget = element[0];
+      evt.eventPhase = 2;
+      evt.keyCode = 65;
+      evt.srcElement = element[0];
+      evt.target = element[0];
+      evt.type = eventName;
+      //evt.view = Window;
+      evt.which = 65; // A
+      element.trigger(evt);
+
+      evt.which = 49; // 1
+      element.trigger(evt);
+    });
+  });
+});

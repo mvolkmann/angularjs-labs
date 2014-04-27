@@ -97,5 +97,10 @@ mod.directive('cbDialog', () => ({
     busyRef: '=',
     data: '=',
     title: '@'
+  },
+  link: function (scope) {
+    scope.getId = function (text) {
+      return text.toLowerCase().replace(/ /g, '-') + '-btn';
+    };
   }
 }));

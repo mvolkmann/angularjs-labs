@@ -23,7 +23,7 @@ module.exports = function (config) {
       'features/*/*.html',
       'build/app.js',
       'test/unit/*-spec.js'
-      //'test/unit/raw-spec.js'
+      //'test/unit/dialog-directive-spec.js'
     ],
 
     // list of files to exclude
