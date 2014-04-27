@@ -51,8 +51,6 @@ mod.factory('cbDialogSvc', ($rootScope) => {
    * @param onDismiss see show method
    */
   svc.showMessage = (title, message, classes, onDismiss) => {
-    console.log('dialog showMessage: title =', title);
-    console.log('dialog showMessage: message =', message);
     $rootScope.title = title;
     $rootScope.message = message;
     svc.show('global-error', classes, onDismiss);
