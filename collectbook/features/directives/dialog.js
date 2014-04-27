@@ -51,6 +51,8 @@ mod.factory('cbDialogSvc', ($rootScope) => {
    * @param onDismiss see show method
    */
   svc.showMessage = (title, message, classes, onDismiss) => {
+    console.log('dialog showMessage: title =', title);
+    console.log('dialog showMessage: message =', message);
     $rootScope.title = title;
     $rootScope.message = message;
     svc.show('global-error', classes, onDismiss);
@@ -61,7 +63,7 @@ mod.factory('cbDialogSvc', ($rootScope) => {
 
 /**
  * Example usage:
- * <cb-dialog id="myDialog" heading="Make a Move" btn-map="btnMap">
+ * <cb-dialog id="myDialog" title="Make a Move" btn-map="btnMap">
  *   ... content goes here ...
  * </cb-dialog>
  *
@@ -93,7 +95,7 @@ mod.directive('cbDialog', () => ({
   scope: {
     btnMap: '=',
     busyRef: '=',
-    heading: '@',
-    data: '='
+    data: '=',
+    title: '@'
   }
 }));

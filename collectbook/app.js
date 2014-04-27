@@ -47,6 +47,8 @@ function getItemUrl(bookId, itemId) {
 }
 
 // Display any uncaught exceptions in a modal dialog.
+// Perhaps $injector must be used here instead of injecting cbDialogSvc
+// to get around a timing issue with when cbDialogSvc is defined.
 app.factory('$exceptionHandler', $injector => (exception, cause) => {
   var cbDialogSvc = $injector.get('cbDialogSvc');
   cbDialogSvc.showError('JavaScript Error', exception.message);
@@ -65,7 +67,11 @@ app.factory('cbHandleErr', cbDialogSvc =>
 app.factory('collectBookSvc', $http => {
   var svc = {};
 
-  svc.addBook = book => $http.post(URL_PREFIX + 'book', book);
+  //svc.addBook = book => $http.post(URL_PREFIX + 'book', book);
+  svc.addBook = book => {
+    throw new Error('failed to add book');
+    //$http.post(URL_PREFIX + 'book', book);
+  };
 
   svc.addItem = (bookId, item) =>
     $http.post(getBookUrl(bookId) + '/item', item);
