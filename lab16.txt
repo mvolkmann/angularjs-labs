@@ -1,0 +1,147 @@
+srcDir collectbook
+destDir lab16
+file test/unit/module-spec.js
+describe\(
+0
+//Lab: After making the required changes to the Karma tests
+//     in this lab, run them by entering "grunt karma".
+
+'ui\.router'
+1
+    //Lab: Add an expect to verify that module.requires contains "ui.router".
+
+file test/unit/cbDialogSvc-spec.js
+beforeEach\(
+1
+  //Lab: Add a line to load the "cb-directives" module
+  //     before each test is run.
+
+inject\(
+1
+    //Lab: Two services are needed by this test, $rootScope and
+    //     cbDialogSvc which is the actual service being tested.
+    //     Modify the next line to inject them.
+    inject(function () {
+
+expect\(\$rootScope\.message\)
+1
+      //Lab: Add an expect to verify that the value of $rootScope.message
+      //     is the same as the value of the variable msg.
+
+file test/unit/viewBookCtrl-spec.js
+module\(function \(\$provide\)
+3
+    module(function ($provide) {
+      //Lab: Use the $provide service to values for "book" and "items"
+      //     that are injected into ViewBookCtrl using resolve
+      //     when the app is run outside a test.
+      //     "book" should be an object with a "data" property
+      //     whose value is an empty object.
+      //     "items" should be an object with a "data" property
+      //     whose value is an empty array.
+
+scope = \$rootScope\.\$new
+1
+      //Lab: Use $rootScope to create a new scope object
+      //     and assign it to the local variable scope that is
+      //     already declared near the top of this file.
+      scope = $rootScope.$new();
+
+\$controller\(
+1
+      //Lab: Use the $controller service to associate the
+      //     new scope object with the ViewBookCtrl controller.
+
+it\('should get input type'
+4
+  it('should get input type', function () {
+    //Lab: The scope method inputType determines the property input
+    //     element type attribute value for a given data type.
+    //     Add an expect that verifies that when the inputType method
+    //     is passed an object with a type property
+    //     set to "boolean", it returns "checkbox".
+\n
+    //Lab: Add another expect that verifies that when
+    //     the type is "integer", it returns "number".
+\n
+    //Lab: Add another expect that verifies that when
+    //     the type is any other value, it returns "text".
+
+file test/unit/objToArr-filter-spec.js
+it\('should create array from object'
+1
+  //Lab: In the line below, inject the filter function to be tested,
+  //     objToArrayFilter.
+  it('should create array from object', inject(function () {
+
+var arr =
+1
+    //Lab: Declare a variable named "arr" and assign to it the
+    //     result of passing obj to the function objToArrFilter.
+
+expect\(arr\)
+1
+    //Lab: Add an expect to verify that arr is equal to expected.
+    //     The method toBe uses ===.  For a deep comparison
+    //     of objects or arrays use the toEqual method.
+
+file test/unit/dialog-directive-spec.js
+beforeEach\(
+1
+  //Lab: Two things need to be loaded before this test runs.
+  //     1) the "cb-directives" module
+  //     2) the HTML template in "features/directives/dialog.html"
+  //     Pass both strings to the module method below.
+  beforeEach(module());
+
+it\('should work'
+1
+  //Lab: This test requires the following services:
+  //     $compile, $rootScope, and cbDialogSvc.
+  //     Inject these by adding them as parameters to the function below.
+  it('should work', inject(function () {
+
+var scope =
+1
+    //Lab: Declare a variable named "scope" and assign to it a new scope
+    //     object created by calling the $new method on $rootScope.
+
+scope\.btnMap =
+8
+    //Lab: Add a property to the scope object named "btnMap" whose value
+    //     is an object with the properties "OK" and "Cancel".  The value
+    //     of these properties should be an anonymous function that assigns
+    //     some unique string to the properties scope.data.ok and
+    //     scope.data.cancel, respectively.  These will be used later to
+    //     test whether pushing the buttons at the bottom of the dialog
+    //     really cause the corresponding functions to be executed.
+
+var html =
+0
+    //Lab: Study the code below that creates an instance of the
+    //     cb-dialog directive that will be the focus of this test.
+    //     The angular.element method creates a jQuery-wrapped reference
+    //     to the DOM element that is the root of the dialog HTML.
+    //     The $compile service takes HTML or a DOM element, 
+    //     produces a template, and returns a function that
+    //     takes a scope object and links the template to the scope.
+    //     scope.$digest() runs a digest cycle so the dialog HTML
+    //     can be populated from data in the scope.
+
+var p =
+3
+    //Lab: Following the example for testing the first child
+    //     in the dialog body above, write test code that:
+    //     1) gets a reference to the last child element
+    //        in the dialog body, a paragraph (p)
+    //     2) tests that the tagName is "P"
+    //     3) tests that the textContent of the p element is "content"
+
+var cancelBtn =
+4
+    //Lab: Following the example for testing the OK button above,
+    //     write test code that:
+    //     1) gets a reference to the Cancel button DOM element
+    //     2) tests that it was found
+    //     3) clicks the Cancel button
+    //     4) tests that the associated function was executed

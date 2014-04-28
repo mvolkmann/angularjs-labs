@@ -36,8 +36,11 @@ describe('cbDialog directive', function () {
     // It should have the Twitter Bootstrap CSS class "modal".
     expect(element.hasClass('modal')).toBe(true);
 
+    // Get a reference to the DOM element at the top of the dialog HTML.
     var domEl = element[0];
 
+    // Test the content in the dialog body.
+  
     var body = domEl.querySelector('.modal-body');
 
     var h1 = body.firstChild;
@@ -47,6 +50,8 @@ describe('cbDialog directive', function () {
     var p = body.lastChild;
     expect(p.tagName).toBe('P');
     expect(p.textContent).toBe('content');
+
+    // Test the buttons in the dialog footer.
 
     // These values are set in the btnMap functions,
     // but shouldn't be set yet.

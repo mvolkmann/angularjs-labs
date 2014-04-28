@@ -2,7 +2,7 @@
 /*global angular: false, beforeEach: false, describe: false, expect: false,
          inject: false, it: false */
 
-describe('viewBookCtrl controller', function () {
+describe('ViewBookCtrl controller', function () {
   var scope;
 
   beforeEach(function () {
