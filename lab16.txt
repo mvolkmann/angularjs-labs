@@ -32,7 +32,7 @@ file test/unit/viewBookCtrl-spec.js
 module\(function \(\$provide\)
 3
     module(function ($provide) {
-      //Lab: Use the $provide service to values for "book" and "items"
+      //Lab: Use the $provide service to provide values for "book" and "items"
       //     that are injected into ViewBookCtrl using resolve
       //     when the app is run outside a test.
       //     "book" should be an object with a "data" property
@@ -45,7 +45,7 @@ scope = \$rootScope\.\$new
       //Lab: Use $rootScope to create a new scope object
       //     and assign it to the local variable scope that is
       //     already declared near the top of this file.
-      scope = $rootScope.$new();
+\n
 
 \$controller\(
 1
@@ -55,7 +55,7 @@ scope = \$rootScope\.\$new
 it\('should get input type'
 4
   it('should get input type', function () {
-    //Lab: The scope method inputType determines the property input
+    //Lab: The scope method inputType determines the proper input
     //     element type attribute value for a given data type.
     //     Add an expect that verifies that when the inputType method
     //     is passed an object with a type property
@@ -82,8 +82,8 @@ var arr =
 expect\(arr\)
 1
     //Lab: Add an expect to verify that arr is equal to expected.
-    //     The method toBe uses ===.  For a deep comparison
-    //     of objects or arrays use the toEqual method.
+    //     The method "toBe" uses ===.  For a deep comparison
+    //     of objects or arrays use the "toEqual" method.
 
 file test/unit/dialog-directive-spec.js
 beforeEach\(
@@ -115,6 +115,8 @@ scope\.btnMap =
     //     scope.data.cancel, respectively.  These will be used later to
     //     test whether pushing the buttons at the bottom of the dialog
     //     really cause the corresponding functions to be executed.
+    //     The code later expects the strings to be
+    //     "pressed OK" and "pressed Cancel", respectively.
 
 var html =
 0
