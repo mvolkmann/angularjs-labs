@@ -21,7 +21,7 @@ mod\.directive\('cbIdentifier'
 
 file features/directives/dialog.js
 mod\.directive\('cbDialog'
-12
+11
 //Lab: Define a directive named "cbDialog".
 //     It opens a Twitter Bootstrap modal containing a specified
 //     header, content, and buttons for the user to press.
@@ -33,7 +33,7 @@ mod\.directive\('cbDialog'
 //     Use an isolate scope that contains these properties:
 //     * btnMap - by reference
 //     * busyRef - by reference
-//     * heading - by value
+//     * title - by value
 //     * data - by reference
 //     See the comments above for a description of each of these.
 mod.directive('cbDialog', () => ({
@@ -42,7 +42,7 @@ file features/directives/dialog.html
 <h4 class="modal-title">
 1
         <!--Lab: Use a binding expression to display the
-                 scope property "heading" inside this h4 element. -->
+                 scope property "title" inside this h4 element. -->
         <h4 class="modal-title"></h4>
 
 <div class="modal-body"
@@ -63,7 +63,7 @@ file features/directives/dialog.html
         <img src="images/spinner.gif">
 
 <button ng-repeat
-2
+6
         <!--Lab: Use the ng-repeat directive to iterate through
                  the properties in the scope property "btnMap",
                  putting the keys in the variable "text"
@@ -72,7 +72,9 @@ file features/directives/dialog.html
                  Use a binding expression to display
                  the value of text on the each button. -->
         <button
-        </button>
+          id="{{getId(text)}}"
+          class="btn btn-default"
+          data-dismiss="modal">
 
 file features/directives/color-picker.js
 mod\.directive\('cbColorPicker'
