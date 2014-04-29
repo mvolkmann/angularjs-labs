@@ -10,10 +10,10 @@
       <div class="modal-footer" ng-show="btnMap">
         <img src="images/spinner.gif" ng-show="busyRef">
         <button ng-repeat="(text, fn) in btnMap"
+          ng-click="fn()"
           id="{{getId(text)}}"
           class="btn btn-default"
-          data-dismiss="modal"
-          ng-click="fn()">
+          data-dismiss="modal">
           {{text}}
         </button>
       </div> <!-- modal-footer -->

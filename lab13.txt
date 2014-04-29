@@ -62,8 +62,8 @@ file features/directives/dialog.html
                  the scope property "busyRef" is true. -->
         <img src="images/spinner.gif">
 
-<button class="btn btn-default" data-dismiss="modal"
-4
+<button ng-repeat
+2
         <!--Lab: Use the ng-repeat directive to iterate through
                  the properties in the scope property "btnMap",
                  putting the keys in the variable "text"
@@ -71,7 +71,7 @@ file features/directives/dialog.html
                  When a button is clicked, call fn.
                  Use a binding expression to display
                  the value of text on the each button. -->
-        <button class="btn btn-default" data-dismiss="modal">
+        <button
         </button>
 
 file features/directives/color-picker.js

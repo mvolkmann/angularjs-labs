@@ -25,7 +25,7 @@ file features/view-book/view-book.html
               in order by whatever property name is in
               the scope property "sortKey" and
               determine whether the sort should be ascending or
-              descending based on the scope property "reverse".
+              descending based on the scope property "reverse". -->
   <tr ng-repeat="(index, item) in items"
 
 file features/filters/obj-to-arr.js
