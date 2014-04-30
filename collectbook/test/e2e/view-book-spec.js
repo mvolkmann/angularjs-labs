@@ -12,7 +12,7 @@ function selectOption(selectElement, optionText) {
   });
 }
 
-describe('edit-book', function () {
+describe('view-book', function () {
   var ptor;
 
   beforeEach(function () {
@@ -20,8 +20,12 @@ describe('edit-book', function () {
     ptor = protractor.getInstance();
   });
 
-  it('should edit book', function () {
+  it('should view book', function () {
     var btnText = 'Foo Bar Baz';
+
+    // TODO: Use the same code as in edit-book-spec.js
+    // TODO: to create and configure a test book
+    // TODO: rather than duplicating it here.
 
     // Create a new book.
     element(by.id('add-btn')).element(by.tagName('a')).click();
@@ -48,27 +52,40 @@ describe('edit-book', function () {
     element(by.id('required')).click();
     element(by.buttonText('Add')).click();
 
-    // Verify that the field appears in the table.
+    // Switch to the "view" view for the new book.
+    btn.click();
+
+    // Expand to add items.
+    element(by.id('expand-form')).click();
+
+    // Enter a value in the first field.
+    var value = 'mark@ociweb.com';
+    var field = element(by.className('form-control'));
+    field.clear();
+    field.sendKeys(value);
+
+    // Click "Update" button.
+    element(by.buttonText('Update')).click();
+
+    // Verify that the new item appears in the table.
     var table = element(by.tagName('table'));
     var trs = table.findElements(by.tagName('tr'));
     trs.then(function (rows) {
-      expect(rows.length).toBe(2); // header row and row for new field
+      // header row, filter row, and row for new field
+      expect(rows.length).toBe(3);
 
-      var tr = rows[1];
+      var tr = rows[2];
       var tds = tr.findElements(by.tagName('td'));
       tds.then(function (columns) {
-        expect(columns[0].getText()).toBe(fieldName);
-        expect(columns[1].getText()).toBe(fieldType);
-        expect(columns[2].getText()).toBe(fieldPlaceholder);
-        expect(columns[3].getText()).toBe('true');
+        expect(columns[0].getText()).toBe(value);
 
-        // Delete the field.
-        columns[4].click();
+        // Delete the item.
+        columns[1].click();
 
         // Verify that the field was removed from the table.
         trs = table.findElements(by.tagName('tr'));
         trs.then(function (rows) {
-          expect(rows.length).toBe(1); // only header row
+          expect(rows.length).toBe(2); // only header and filter rows
         });
 
         // Delete the new book.

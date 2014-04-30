@@ -11,10 +11,10 @@
 <!-- This toggles form visibility by
      setting the editing property on the scope. -->
 <div ng-show="book.fields">
-  <div ng-show="editing" ng-click="editing = false">
+  <div id="collapse-form" ng-show="editing" ng-click="editing = false">
     &#x25bc; Collapse to hide add/edit area.
   </div>
-  <div ng-hide="editing" ng-click="editing = true">
+  <div id="expand-form" ng-hide="editing" ng-click="editing = true">
     &#x25b6; Expand to add/edit items.
   </div>
 </div>

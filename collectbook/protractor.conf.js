@@ -2,7 +2,7 @@
 
 var seleniumServerJar =
   '/usr/local/lib/node_modules/protractor' +
-  '/selenium/selenium-server-standalone-2.40.0.jar';
+  '/selenium/selenium-server-standalone-2.41.0.jar';
 
 // A reference configuration file.
 exports.config = {

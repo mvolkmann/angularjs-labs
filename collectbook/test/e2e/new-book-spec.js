@@ -3,7 +3,7 @@
   element: false, expect: false, it: false, protractor: false,
   xdescribe: false */
 
-xdescribe('new-book', function () {
+describe('new-book', function () {
   var ptor;
 
   beforeEach(function () {
@@ -34,5 +34,5 @@ xdescribe('new-book', function () {
     // Verify that the nav button is no longer present.
     btn = element(by.buttonText(btnText));
     expect(btn.isPresent()).toBe(false);
-  }, 3000); // one second timeout
+  }, 3000); // three second timeout
 });
