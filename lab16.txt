@@ -71,7 +71,7 @@ file test/unit/objToArr-filter-spec.js
 it\('should create array from object'
 1
   //Lab: In the line below, inject the filter function to be tested,
-  //     objToArrayFilter.
+  //     objToArrFilter.
   it('should create array from object', inject(function () {
 
 var arr =

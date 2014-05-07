@@ -6,10 +6,7 @@
 var share = require('./share');
 
 describe('new-book', function () {
-  beforeEach(function () {
-    browser.get('http://localhost:3000/');
-    share.ptor = protractor.getInstance();
-  });
+  beforeEach(share.before);
 
   it('should create new book', function () {
     share.createTestBook();

@@ -7,7 +7,12 @@ var share = {
   fieldName: 'Email',
   fieldType: 'email',
   fieldPlaceholder: 'home email address',
-  ptor: null // TESTS MUST SET THIS!
+  ptor: null // set by share.before
+};
+
+share.before = function () {
+  browser.get('http://localhost:3000/');
+  share.ptor = protractor.getInstance();
 };
 
 function selectOption(selectElement, optionText) {
