@@ -60,7 +60,8 @@ rimraf.sync(destDir);
 console.log('copying', srcDir, 'directory to', destDir);
 var cmd = onWindows ?
   //'xcopy /e .\\' + srcDir + ' .\\' + destDir + '\\\\ /exclude:excludes.txt' :
-  'robocopy ' + srcDir + ' ' + destDir + ' /s /xd build node_modules > log:Nul' :
+  'robocopy ' + srcDir + ' ' + destDir +
+  ' /s /xd build node_modules > log:Nul' :
   'rsync -a --exclude build --exclude node_modules ' + srcDir + '/ ' + destDir;
 console.log('copy command is', cmd);
 child_process.exec(cmd, function (err) {
