@@ -26,7 +26,8 @@ app\.factory
 
 app\.controller
 0
-//Lab: Notice how the module in the variable "app" is used to define a controller.
+//Lab: Notice how the module in the variable "app"
+//Lab: is used to define a controller.
 
 file features/edit-book/edit-book.js
 var app =
