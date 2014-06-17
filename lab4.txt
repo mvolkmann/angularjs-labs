@@ -70,7 +70,7 @@ file features/view-book/view-book.html
 1
 <!--Lab: Add ng-hide directive that hides this "div"
          if there are any elements in the "book.fields" array.  -->
-<div>         
+<div>
 
 Click
 2
@@ -85,13 +85,13 @@ Click
          if there are any elements in the "book.fields" array.  -->
 <div>
 
-<div ng-show="editing" ng-click="editing = false">
+<div id="collapse-form" ng-show="editing" ng-click="editing = false">
 1
   <!--Lab: Add ng-show directive to show this if "editing" is true.
            Add ng-click directive to set editing to false if this is clicked. -->
   <div>
 
-<div ng-hide="editing" ng-click="editing = true">
+<div id="expand-form" ng-hide="editing" ng-click="editing = true">
 1
   <!--Lab: Add ng-hide directive to hide this if "editing" is true.
            Add ng-click directive to set editing to true if this is clicked. -->
@@ -156,7 +156,7 @@ Click
              in the "book.fields" array, setting "field" to each one. -->
     <th>
 
-<a ng-click="sortOn\(field\)">{{field.displayName}}</a>
+<a href="" ng-click="sortOn\(field\)">{{field.displayName}}</a>
 1
       <!--Lab: Add ng-click directive that calls the "sortOn"
                scope function, passing it the current "field"
