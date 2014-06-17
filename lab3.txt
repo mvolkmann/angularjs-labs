@@ -20,12 +20,6 @@ file features/view-book/view-book.html
       <!--Lab: Add a binding expression that displays the scope property
                "displayName" of the current "field" object. -->
 
-{{editing 
-1
-        <!--Lab: If the scope property "editing" is true,
-                 display "Update".  Otherwise display "Add".
-                 The ternary operator can be used in binding expressions. -->
-
 sortOn
 1
       <!--Lab: Display the value of the "displayName" property in
