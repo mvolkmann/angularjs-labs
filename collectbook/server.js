@@ -252,7 +252,9 @@ app.get('/shutdown', (req, res) => {
 // and let the user know the port.
 // Browse localhost:3000.
 var PORT = 3000;
-var server = app.listen(PORT);
+var server = app.listen(PORT, function () {
+  console.log('listening on port', PORT);
+});
 
 // Keep track of all connections so they can be destroyed
 // if a request to shutdown this server is received.
