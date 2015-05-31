@@ -1,5 +1,5 @@
 srcDir collectbook
-destDir lab12
+destDir lab11
 file index.html
 <span ng-bind-html=
 1
