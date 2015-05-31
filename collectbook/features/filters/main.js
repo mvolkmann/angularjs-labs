@@ -5,5 +5,5 @@
 var mod = angular.module('cb-filters', ['ngSanitize']);
 
 // ES6 imports of files that add to this module.
-import './obj-to-arr';
-import './raw';
+import './obj-to-arr.js';
+import './raw.js';

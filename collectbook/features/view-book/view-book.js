@@ -4,7 +4,7 @@
 
 var app = angular.module('CollectBook');
 
-import Item from '../models/item';
+import Item from '../models/item.js';
 
 // These are types whose name matches that of
 // a valid HTML5 input type attribute value.
