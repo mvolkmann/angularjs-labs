@@ -4,7 +4,7 @@
 
 var app = angular.module('CollectBook');
 
-import Field from '../models/field';
+import Field from '../models/field.js';
 
 app.config(($stateProvider) => {
   $stateProvider.

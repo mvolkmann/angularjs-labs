@@ -11,12 +11,12 @@ var app = angular.module('CollectBook',
   ['cb-directives', 'cb-filters', 'ui.router']);
 
 // These are ES6 imports of other JavaScript source files.
-import './features/directives/main';
-import './features/edit-book/edit-book';
-import './features/filters/main';
-import './features/nav/nav';
-import './features/new-book/new-book';
-import './features/view-book/view-book';
+import './features/directives/main.js';
+import './features/edit-book/edit-book.js';
+import './features/filters/main.js';
+import './features/nav/nav.js';
+import './features/new-book/new-book.js';
+import './features/view-book/view-book.js';
 
 // This is the prefix for all REST URLs used by this app.
 var URL_PREFIX = 'http://localhost:3000/collectbook/';

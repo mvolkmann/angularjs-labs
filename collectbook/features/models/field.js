@@ -1,7 +1,7 @@
 'use strict';
 /*jshint esnext: true */
 
-import {camelCase} from '../share/string-util';
+import {camelCase} from '../share/string-util.js';
 
 class Field {
   constructor() {

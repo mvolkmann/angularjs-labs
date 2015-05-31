@@ -2,7 +2,7 @@
 /*jshint esnext: true */
 /*global angular: false */
 
-import Book from '../models/book';
+import Book from '../models/book.js';
 
 var app = angular.module('CollectBook');
 

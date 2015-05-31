@@ -12,13 +12,13 @@
  */
 
 // ES6 imports
-import Book from './features/models/book';
-import Field from './features/models/field';
+import Book from './features/models/book.js';
+import Field from './features/models/field.js';
 
 // fs-promise wraps a subset of the functions in the Node.js fs module
 // so they use ES6 promises.
 import {exists, isDirectory, mkdir, readDir, readObject, rm, rmdir, writeObject}
-  from './features/share/fs-promise';
+  from './features/share/fs-promise.js';
 
 var express = require('express');
 var path = require('path');
